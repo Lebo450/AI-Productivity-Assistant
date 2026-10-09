@@ -28,6 +28,8 @@ import { Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { pageHead } from "@/lib/site-config";
 import { readableError } from "@/lib/ai/error-message";
+import { toast } from "sonner";
+
 
 const threadOptions = (id: string) =>
   queryOptions({
