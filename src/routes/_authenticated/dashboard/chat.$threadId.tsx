@@ -81,7 +81,7 @@ function ChatWindow({ id, initialMessages }: { id: string; initialMessages: UIMe
     id,
     messages: initialMessages,
     transport,
-    onError: (e) => toast.error(e.message),
+    onError: (e) => toast.error(readableError(e)),
     onFinish: () => {
       query.invalidateQueries({ queryKey: ["workspace"] });
       query.invalidateQueries({ queryKey: ["conversation", id] });
@@ -164,7 +164,7 @@ function ChatWindow({ id, initialMessages }: { id: string; initialMessages: UIMe
       </Conversation>
       {error && (
         <div className="error-alert" role="alert">
-          {error.message}
+          {readableError(error)}
         </div>
       )}
       <div className="chat-composer">

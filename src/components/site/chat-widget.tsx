@@ -62,7 +62,7 @@ export function PublicChatWidget() {
     id: "public-chat",
     messages: stored,
     transport,
-    onError: (e) => toast.error(e.message),
+    onError: (e) => toast.error(readableError(e)),
   });
   const busy = status === "submitted" || status === "streaming";
 
@@ -201,7 +201,7 @@ export function PublicChatWidget() {
           </Conversation>
           {error && (
             <div className="error-alert" role="alert">
-              {error.message}
+              {readableError(error)}
             </div>
           )}
           <div className="chat-panel-composer">
