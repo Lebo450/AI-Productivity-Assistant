@@ -10,8 +10,9 @@ export const workspaceOptions = queryOptions({
 export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => pageHead("Workspace", "Your private Connect Digital AI productivity workspace."),
   loader: ({ context }) => context.queryClient.ensureQueryData(workspaceOptions),
-  component: () => {
-    const { data } = useSuspenseQuery(workspaceOptions);
-    return <DashboardLayout email={data.email} />;
-  },
+  component: WorkspaceRoute,
 });
+function WorkspaceRoute() {
+  const { data } = useSuspenseQuery(workspaceOptions);
+  return <DashboardLayout email={data.email} />;
+}

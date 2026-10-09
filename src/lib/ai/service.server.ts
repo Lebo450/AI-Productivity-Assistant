@@ -19,7 +19,9 @@ function errorDetails(error: unknown) {
     try {
       const body = JSON.parse(error.responseBody || "{}");
       message = body.error?.message || body.message || message;
-    } catch {}
+    } catch {
+      // Preserve the original safe error when the response is not JSON.
+    }
     return { status: error.statusCode || 500, message };
   }
   return {
@@ -57,7 +59,9 @@ async function gateway(request: Request) {
         let body: { message?: string; error?: { message?: string } } = {};
         try {
           body = await response.clone().json();
-        } catch {}
+        } catch {
+          // Preserve the status-derived error for non-JSON responses.
+        }
         upstreamError = {
           status: response.status,
           message: body.error?.message || body.message || `AI request failed (${response.status}).`,
