@@ -10,33 +10,264 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as ResponsibleAiRouteImport } from './routes/responsible-ai'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as AuthenticatedDashboardRouteRouteImport } from './routes/_authenticated/dashboard/route'
+import { Route as ApiAiRouteImport } from './routes/api/ai'
+import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard/index'
+import { Route as AuthenticatedDashboardChatRouteImport } from './routes/_authenticated/dashboard/chat'
+import { Route as AuthenticatedDashboardEmailRouteImport } from './routes/_authenticated/dashboard/email'
+import { Route as AuthenticatedDashboardHelpRouteImport } from './routes/_authenticated/dashboard/help'
+import { Route as AuthenticatedDashboardNotesRouteImport } from './routes/_authenticated/dashboard/notes'
+import { Route as AuthenticatedDashboardPlannerRouteImport } from './routes/_authenticated/dashboard/planner'
+import { Route as AuthenticatedDashboardSettingsRouteImport } from './routes/_authenticated/dashboard/settings'
+import { Route as AuthenticatedDashboardChatThreadIdRouteImport } from './routes/_authenticated/dashboard/chat.$threadId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResponsibleAiRoute = ResponsibleAiRouteImport.update({
+  id: '/responsible-ai',
+  path: '/responsible-ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedDashboardRouteRoute =
+  AuthenticatedDashboardRouteRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const ApiAiRoute = ApiAiRouteImport.update({
+  id: '/api/ai',
+  path: '/api/ai',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedDashboardIndexRoute =
+  AuthenticatedDashboardIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedDashboardRouteRoute,
+  } as any)
+const AuthenticatedDashboardChatRoute =
+  AuthenticatedDashboardChatRouteImport.update({
+    id: '/chat',
+    path: '/chat',
+    getParentRoute: () => AuthenticatedDashboardRouteRoute,
+  } as any)
+const AuthenticatedDashboardEmailRoute =
+  AuthenticatedDashboardEmailRouteImport.update({
+    id: '/email',
+    path: '/email',
+    getParentRoute: () => AuthenticatedDashboardRouteRoute,
+  } as any)
+const AuthenticatedDashboardHelpRoute =
+  AuthenticatedDashboardHelpRouteImport.update({
+    id: '/help',
+    path: '/help',
+    getParentRoute: () => AuthenticatedDashboardRouteRoute,
+  } as any)
+const AuthenticatedDashboardNotesRoute =
+  AuthenticatedDashboardNotesRouteImport.update({
+    id: '/notes',
+    path: '/notes',
+    getParentRoute: () => AuthenticatedDashboardRouteRoute,
+  } as any)
+const AuthenticatedDashboardPlannerRoute =
+  AuthenticatedDashboardPlannerRouteImport.update({
+    id: '/planner',
+    path: '/planner',
+    getParentRoute: () => AuthenticatedDashboardRouteRoute,
+  } as any)
+const AuthenticatedDashboardSettingsRoute =
+  AuthenticatedDashboardSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => AuthenticatedDashboardRouteRoute,
+  } as any)
+const AuthenticatedDashboardChatThreadIdRoute =
+  AuthenticatedDashboardChatThreadIdRouteImport.update({
+    id: '/$threadId',
+    path: '/$threadId',
+    getParentRoute: () => AuthenticatedDashboardChatRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/contact': typeof ContactRoute
+  '/privacy': typeof PrivacyRoute
+  '/responsible-ai': typeof ResponsibleAiRoute
+  '/services': typeof ServicesRoute
+  '/terms': typeof TermsRoute
+  '/dashboard': typeof AuthenticatedDashboardRouteRouteWithChildren
+  '/api/ai': typeof ApiAiRoute
+  '/dashboard/chat': typeof AuthenticatedDashboardChatRouteWithChildren
+  '/dashboard/email': typeof AuthenticatedDashboardEmailRoute
+  '/dashboard/help': typeof AuthenticatedDashboardHelpRoute
+  '/dashboard/notes': typeof AuthenticatedDashboardNotesRoute
+  '/dashboard/planner': typeof AuthenticatedDashboardPlannerRoute
+  '/dashboard/settings': typeof AuthenticatedDashboardSettingsRoute
+  '/dashboard/': typeof AuthenticatedDashboardIndexRoute
+  '/dashboard/chat/$threadId': typeof AuthenticatedDashboardChatThreadIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/contact': typeof ContactRoute
+  '/privacy': typeof PrivacyRoute
+  '/responsible-ai': typeof ResponsibleAiRoute
+  '/services': typeof ServicesRoute
+  '/terms': typeof TermsRoute
+  '/api/ai': typeof ApiAiRoute
+  '/dashboard/chat': typeof AuthenticatedDashboardChatRouteWithChildren
+  '/dashboard/email': typeof AuthenticatedDashboardEmailRoute
+  '/dashboard/help': typeof AuthenticatedDashboardHelpRoute
+  '/dashboard/notes': typeof AuthenticatedDashboardNotesRoute
+  '/dashboard/planner': typeof AuthenticatedDashboardPlannerRoute
+  '/dashboard/settings': typeof AuthenticatedDashboardSettingsRoute
+  '/dashboard': typeof AuthenticatedDashboardIndexRoute
+  '/dashboard/chat/$threadId': typeof AuthenticatedDashboardChatThreadIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/contact': typeof ContactRoute
+  '/privacy': typeof PrivacyRoute
+  '/responsible-ai': typeof ResponsibleAiRoute
+  '/services': typeof ServicesRoute
+  '/terms': typeof TermsRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRouteRouteWithChildren
+  '/api/ai': typeof ApiAiRoute
+  '/_authenticated/dashboard/chat': typeof AuthenticatedDashboardChatRouteWithChildren
+  '/_authenticated/dashboard/email': typeof AuthenticatedDashboardEmailRoute
+  '/_authenticated/dashboard/help': typeof AuthenticatedDashboardHelpRoute
+  '/_authenticated/dashboard/notes': typeof AuthenticatedDashboardNotesRoute
+  '/_authenticated/dashboard/planner': typeof AuthenticatedDashboardPlannerRoute
+  '/_authenticated/dashboard/settings': typeof AuthenticatedDashboardSettingsRoute
+  '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexRoute
+  '/_authenticated/dashboard/chat/$threadId': typeof AuthenticatedDashboardChatThreadIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/contact'
+    | '/privacy'
+    | '/responsible-ai'
+    | '/services'
+    | '/terms'
+    | '/dashboard'
+    | '/api/ai'
+    | '/dashboard/chat'
+    | '/dashboard/email'
+    | '/dashboard/help'
+    | '/dashboard/notes'
+    | '/dashboard/planner'
+    | '/dashboard/settings'
+    | '/dashboard/'
+    | '/dashboard/chat/$threadId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/contact'
+    | '/privacy'
+    | '/responsible-ai'
+    | '/services'
+    | '/terms'
+    | '/api/ai'
+    | '/dashboard/chat'
+    | '/dashboard/email'
+    | '/dashboard/help'
+    | '/dashboard/notes'
+    | '/dashboard/planner'
+    | '/dashboard/settings'
+    | '/dashboard'
+    | '/dashboard/chat/$threadId'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/about'
+    | '/auth'
+    | '/contact'
+    | '/privacy'
+    | '/responsible-ai'
+    | '/services'
+    | '/terms'
+    | '/_authenticated/dashboard'
+    | '/api/ai'
+    | '/_authenticated/dashboard/chat'
+    | '/_authenticated/dashboard/email'
+    | '/_authenticated/dashboard/help'
+    | '/_authenticated/dashboard/notes'
+    | '/_authenticated/dashboard/planner'
+    | '/_authenticated/dashboard/settings'
+    | '/_authenticated/dashboard/'
+    | '/_authenticated/dashboard/chat/$threadId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AboutRoute: typeof AboutRoute
+  AuthRoute: typeof AuthRoute
+  ContactRoute: typeof ContactRoute
+  PrivacyRoute: typeof PrivacyRoute
+  ResponsibleAiRoute: typeof ResponsibleAiRoute
+  ServicesRoute: typeof ServicesRoute
+  TermsRoute: typeof TermsRoute
+  ApiAiRoute: typeof ApiAiRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +279,200 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/responsible-ai': {
+      id: '/responsible-ai'
+      path: '/responsible-ai'
+      fullPath: '/responsible-ai'
+      preLoaderRoute: typeof ResponsibleAiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/api/ai': {
+      id: '/api/ai'
+      path: '/api/ai'
+      fullPath: '/api/ai'
+      preLoaderRoute: typeof ApiAiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/dashboard/': {
+      id: '/_authenticated/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof AuthenticatedDashboardIndexRouteImport
+      parentRoute: typeof AuthenticatedDashboardRouteRoute
+    }
+    '/_authenticated/dashboard/chat': {
+      id: '/_authenticated/dashboard/chat'
+      path: '/chat'
+      fullPath: '/dashboard/chat'
+      preLoaderRoute: typeof AuthenticatedDashboardChatRouteImport
+      parentRoute: typeof AuthenticatedDashboardRouteRoute
+    }
+    '/_authenticated/dashboard/email': {
+      id: '/_authenticated/dashboard/email'
+      path: '/email'
+      fullPath: '/dashboard/email'
+      preLoaderRoute: typeof AuthenticatedDashboardEmailRouteImport
+      parentRoute: typeof AuthenticatedDashboardRouteRoute
+    }
+    '/_authenticated/dashboard/help': {
+      id: '/_authenticated/dashboard/help'
+      path: '/help'
+      fullPath: '/dashboard/help'
+      preLoaderRoute: typeof AuthenticatedDashboardHelpRouteImport
+      parentRoute: typeof AuthenticatedDashboardRouteRoute
+    }
+    '/_authenticated/dashboard/notes': {
+      id: '/_authenticated/dashboard/notes'
+      path: '/notes'
+      fullPath: '/dashboard/notes'
+      preLoaderRoute: typeof AuthenticatedDashboardNotesRouteImport
+      parentRoute: typeof AuthenticatedDashboardRouteRoute
+    }
+    '/_authenticated/dashboard/planner': {
+      id: '/_authenticated/dashboard/planner'
+      path: '/planner'
+      fullPath: '/dashboard/planner'
+      preLoaderRoute: typeof AuthenticatedDashboardPlannerRouteImport
+      parentRoute: typeof AuthenticatedDashboardRouteRoute
+    }
+    '/_authenticated/dashboard/settings': {
+      id: '/_authenticated/dashboard/settings'
+      path: '/settings'
+      fullPath: '/dashboard/settings'
+      preLoaderRoute: typeof AuthenticatedDashboardSettingsRouteImport
+      parentRoute: typeof AuthenticatedDashboardRouteRoute
+    }
+    '/_authenticated/dashboard/chat/$threadId': {
+      id: '/_authenticated/dashboard/chat/$threadId'
+      path: '/$threadId'
+      fullPath: '/dashboard/chat/$threadId'
+      preLoaderRoute: typeof AuthenticatedDashboardChatThreadIdRouteImport
+      parentRoute: typeof AuthenticatedDashboardChatRoute
+    }
   }
 }
 
+interface AuthenticatedDashboardChatRouteChildren {
+  AuthenticatedDashboardChatThreadIdRoute: typeof AuthenticatedDashboardChatThreadIdRoute
+}
+
+const AuthenticatedDashboardChatRouteChildren: AuthenticatedDashboardChatRouteChildren =
+  {
+    AuthenticatedDashboardChatThreadIdRoute:
+      AuthenticatedDashboardChatThreadIdRoute,
+  }
+
+const AuthenticatedDashboardChatRouteWithChildren =
+  AuthenticatedDashboardChatRoute._addFileChildren(
+    AuthenticatedDashboardChatRouteChildren,
+  )
+
+interface AuthenticatedDashboardRouteRouteChildren {
+  AuthenticatedDashboardChatRoute: typeof AuthenticatedDashboardChatRouteWithChildren
+  AuthenticatedDashboardEmailRoute: typeof AuthenticatedDashboardEmailRoute
+  AuthenticatedDashboardHelpRoute: typeof AuthenticatedDashboardHelpRoute
+  AuthenticatedDashboardNotesRoute: typeof AuthenticatedDashboardNotesRoute
+  AuthenticatedDashboardPlannerRoute: typeof AuthenticatedDashboardPlannerRoute
+  AuthenticatedDashboardSettingsRoute: typeof AuthenticatedDashboardSettingsRoute
+  AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
+}
+
+const AuthenticatedDashboardRouteRouteChildren: AuthenticatedDashboardRouteRouteChildren =
+  {
+    AuthenticatedDashboardChatRoute:
+      AuthenticatedDashboardChatRouteWithChildren,
+    AuthenticatedDashboardEmailRoute: AuthenticatedDashboardEmailRoute,
+    AuthenticatedDashboardHelpRoute: AuthenticatedDashboardHelpRoute,
+    AuthenticatedDashboardNotesRoute: AuthenticatedDashboardNotesRoute,
+    AuthenticatedDashboardPlannerRoute: AuthenticatedDashboardPlannerRoute,
+    AuthenticatedDashboardSettingsRoute: AuthenticatedDashboardSettingsRoute,
+    AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,
+  }
+
+const AuthenticatedDashboardRouteRouteWithChildren =
+  AuthenticatedDashboardRouteRoute._addFileChildren(
+    AuthenticatedDashboardRouteRouteChildren,
+  )
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedDashboardRouteRoute: typeof AuthenticatedDashboardRouteRouteWithChildren
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedDashboardRouteRoute:
+    AuthenticatedDashboardRouteRouteWithChildren,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AboutRoute: AboutRoute,
+  AuthRoute: AuthRoute,
+  ContactRoute: ContactRoute,
+  PrivacyRoute: PrivacyRoute,
+  ResponsibleAiRoute: ResponsibleAiRoute,
+  ServicesRoute: ServicesRoute,
+  TermsRoute: TermsRoute,
+  ApiAiRoute: ApiAiRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

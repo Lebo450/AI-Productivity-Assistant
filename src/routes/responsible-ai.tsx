@@ -1,0 +1,47 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { SiteLayout, PageIntro } from "@/components/site/layout";
+import { pageHead, responsibleNotice } from "@/lib/site-config";
+export const Route = createFileRoute("/responsible-ai")({
+  head: () =>
+    pageHead(
+      "Responsible AI",
+      "How to use Connect Digital AI tools safely, thoughtfully and responsibly.",
+    ),
+  component: () => (
+    <SiteLayout>
+      <PageIntro
+        eyebrow="RESPONSIBLE AI"
+        title="Helpful tools. Human judgement."
+        description="You are in control of what you create, edit, copy, and share."
+      />
+      <article className="container policy-content">
+        <p className="notice-full">{responsibleNotice}</p>
+        <h2>Review before you use</h2>
+        <p>
+          AI outputs may be inaccurate or incomplete. Verify facts, names, commitments, and dates.
+          Generated suggestions do not guarantee results.
+        </p>
+        <h2>Protect sensitive information</h2>
+        <p>
+          Do not enter passwords, sensitive personal information, or confidential business
+          information. Only include information necessary for the task.
+        </p>
+        <h2>Keep professional advice professional</h2>
+        <p>
+          AI outputs should not replace qualified legal, financial, medical, or other professional
+          advice where appropriate.
+        </p>
+        <h2>You decide what happens next</h2>
+        <p>
+          You control whether to edit, copy, or share generated content. Users remain responsible
+          for final content and decisions.
+        </p>
+        <h2>About this notice</h2>
+        <p>
+          Prepared by Lebohang April. Naming the author does not certify or independently verify the
+          AI system.
+        </p>
+      </article>
+    </SiteLayout>
+  ),
+});

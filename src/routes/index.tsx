@@ -1,24 +1,289 @@
-import { createFileRoute } from "@tanstack/react-router";
-
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { createFileRoute, Link } from "@tanstack/react-router";
+import {
+  ArrowRight,
+  Check,
+  Smartphone,
+  Globe,
+  HeartHandshake,
+  MousePointer2,
+  ShieldCheck,
+  ChevronDown,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { SiteLayout, QuoteCTA } from "@/components/site/layout";
+import { ServiceGrid } from "@/components/site/service-grid";
+import { pageHead } from "@/lib/site-config";
+import studio from "@/assets/business-studio.jpg";
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () =>
+    pageHead(
+      "Websites that move your business forward",
+      "Modern, affordable, mobile-friendly websites for small businesses, startups and entrepreneurs. Build your online presence with Connect Digital.",
+    ),
+  component: Home,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Home() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <SiteLayout>
+      <section className="home-hero">
+        <div className="container hero-content">
+          <span className="hero-pill">
+            <span /> YOUR BUSINESS, BETTER CONNECTED
+          </span>
+          <h1>
+            Your Business Deserves
+            <br />a <span>Better Website.</span>
+          </h1>
+          <p>
+            We help small businesses build a professional online presence with modern, affordable
+            websites designed to attract customers.
+          </p>
+          <div className="hero-buttons">
+            <Button size="lg" asChild>
+              <Link to="/contact">
+                Get Your Website <ArrowRight />
+              </Link>
+            </Button>
+            <Button size="lg" variant="outline" asChild>
+              <Link to="/services">Explore Our Services</Link>
+            </Button>
+          </div>
+          <div className="hero-assurances">
+            <span>
+              <Check />
+              Designed for your business
+            </span>
+            <span>
+              <Check />
+              Built for every screen
+            </span>
+            <span>
+              <Check />
+              No unnecessary complexity
+            </span>
+          </div>
+        </div>
+        <div className="container hero-image-wrap">
+          <img
+            src={studio}
+            width={1536}
+            height={1024}
+            alt="An illustrative modern business website displayed on a laptop in a bright studio"
+          />
+          <div className="image-caption">
+            <Globe size={17} />
+            <span>A professional presence. A world of possibilities.</span>
+            <span className="example-label">ILLUSTRATIVE WEBSITE</span>
+          </div>
+          <div className="floating-note">
+            <span className="note-icon">
+              <Smartphone />
+            </span>
+            <div>
+              <strong>Looking good. Everywhere.</strong>
+              <span>Mobile-friendly by design.</span>
+            </div>
+            <span className="check-circle">
+              <Check size={15} />
+            </span>
+          </div>
+        </div>
+      </section>
+      <section className="trust-strip">
+        <div className="container">
+          <span>Built for businesses like yours</span>
+          <div>
+            <span>Small businesses</span>
+            <span>Startups</span>
+            <span>Entrepreneurs</span>
+            <span>Local service providers</span>
+          </div>
+        </div>
+      </section>
+      <section className="section container why-section">
+        <div>
+          <span className="eyebrow">MORE THAN JUST A WEBSITE</span>
+          <h2>
+            Make a great first impression.
+            <br />
+            Then make it count.
+          </h2>
+          <p>
+            Your website is often the first place a customer meets your business. Make it a place
+            that builds trust, answers questions, and opens the door to new opportunities.
+          </p>
+          <Button variant="link" asChild>
+            <Link to="/about">
+              Meet Connect Digital <ArrowRight />
+            </Link>
+          </Button>
+        </div>
+        <div className="why-list">
+          {[
+            [
+              Globe,
+              "Be found online",
+              "Give customers a place to discover your business, any time.",
+            ],
+            [ShieldCheck, "Build confidence", "Show who you are, what you do, and why it matters."],
+            [
+              MousePointer2,
+              "Make the next step easy",
+              "Turn a good first impression into a real conversation.",
+            ],
+          ].map(([Icon, title, desc]) => {
+            const I = Icon as typeof Globe;
+            return (
+              <div key={String(title)}>
+                <span className="soft-icon">
+                  <I />
+                </span>
+                <div>
+                  <h3>{String(title)}</h3>
+                  <p>{String(desc)}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+      <section className="services-band">
+        <div className="container section">
+          <div className="section-heading">
+            <div>
+              <span className="eyebrow">PRACTICAL SOLUTIONS, THOUGHTFUL DESIGN</span>
+              <h2>A website for your next step.</h2>
+              <p>From a simple first page to a fresh start for your existing website.</p>
+            </div>
+            <Button variant="outline" asChild>
+              <Link to="/services">
+                View all services <ArrowRight />
+              </Link>
+            </Button>
+          </div>
+          <ServiceGrid />
+        </div>
+      </section>
+      <section className="section container process-section">
+        <div className="center-heading">
+          <span className="eyebrow">SIMPLE FROM START TO LAUNCH</span>
+          <h2>
+            Your idea. Our expertise.
+            <br />
+            Three simple steps.
+          </h2>
+        </div>
+        <div className="process-grid">
+          {[
+            [
+              "01",
+              "Tell Us About Your Business",
+              "We listen to your ideas, understand your goals, and find the right approach.",
+            ],
+            [
+              "02",
+              "We Build Your Website",
+              "We bring your business to life with thoughtful design and your feedback.",
+            ],
+            [
+              "03",
+              "Launch Your Online Presence",
+              "Together, we get your website ready for the world and your next chapter.",
+            ],
+          ].map(([n, t, d]) => (
+            <div key={n}>
+              <span className="step-number">{n}</span>
+              <h3>{t}</h3>
+              <p>{d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+      <section className="benefit-band">
+        <div className="container section">
+          <div className="center-heading">
+            <span className="eyebrow">A PARTNER, NOT JUST A PROVIDER</span>
+            <h2>Good websites. Better working relationships.</h2>
+          </div>
+          <div className="benefit-grid">
+            {[
+              [
+                HeartHandshake,
+                "People-first approach",
+                "Friendly communication, plain language, and a process that includes you.",
+              ],
+              [
+                Smartphone,
+                "Thoughtful on every screen",
+                "Clean, accessible websites that work beautifully wherever customers find you.",
+              ],
+              [
+                Check,
+                "Practical and affordable",
+                "The features your business needs, without unnecessary extras or complexity.",
+              ],
+            ].map(([Icon, t, d]) => {
+              const I = Icon as typeof Check;
+              return (
+                <div key={String(t)}>
+                  <I />
+                  <h3>{String(t)}</h3>
+                  <p>{String(d)}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+      <section className="section container faq-section">
+        <div>
+          <span className="eyebrow">A FEW THINGS YOU MAY BE WONDERING</span>
+          <h2>
+            Questions?
+            <br />
+            We're here to help.
+          </h2>
+          <p>Not sure where to start? Let's talk about your business.</p>
+          <Button variant="link" asChild>
+            <Link to="/contact">
+              Ask us a question <ArrowRight />
+            </Link>
+          </Button>
+        </div>
+        <div>
+          {[
+            [
+              "How much does a website cost?",
+              "Every project is different. We provide a personalised quote based on your pages, content, and the features you need.",
+            ],
+            [
+              "How long will my website take?",
+              "We agree on a realistic timeline once we understand your project and content requirements.",
+            ],
+            [
+              "Will my website work on mobile?",
+              "Yes. Mobile-friendly design is part of every website we build.",
+            ],
+            [
+              "Can you redesign my existing website?",
+              "Absolutely. We can review your current website and suggest a practical path to improving it.",
+            ],
+            [
+              "Do I need to have all my content ready?",
+              "No. We can discuss what you already have and help you plan the content needed for your website.",
+            ],
+          ].map(([q, a]) => (
+            <details key={q}>
+              <summary>
+                {q}
+                <ChevronDown size={18} />
+              </summary>
+              <p>{a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+      <QuoteCTA />
+    </SiteLayout>
   );
 }

@@ -1,0 +1,53 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { SiteLayout, PageIntro, QuoteCTA } from "@/components/site/layout";
+import { pageHead, siteConfig } from "@/lib/site-config";
+import { HeartHandshake, Target, MessagesSquare } from "lucide-react";
+export const Route = createFileRoute("/about")({
+  head: () =>
+    pageHead(
+      "About us",
+      "Connect Digital helps small businesses improve their online presence through practical, professional website solutions.",
+    ),
+  component: () => (
+    <SiteLayout>
+      <PageIntro
+        eyebrow="ABOUT CONNECT DIGITAL"
+        title="Small business. Big possibilities."
+        description="We believe a professional online presence should be within reach for every business."
+      />
+      <section className="container section section-topless">
+        <div className="about-mission">
+          <Target />
+          <h2>Our mission</h2>
+          <p>
+            To help small businesses, startups, and entrepreneurs show up confidently online through
+            attractive, affordable, mobile-friendly websites.
+          </p>
+        </div>
+        <div className="about-grid">
+          <div>
+            <HeartHandshake />
+            <h2>Practical by design</h2>
+            <p>
+              We focus on what your customers need and what your business wants to achieve. Clear
+              navigation, thoughtful content, and approachable design come first.
+            </p>
+          </div>
+          <div>
+            <MessagesSquare />
+            <h2>Built together</h2>
+            <p>
+              We listen before we design. From the first conversation to launch, we explain your
+              options in plain language, share progress, and make room for your feedback.
+            </p>
+          </div>
+        </div>
+        <div className="placeholder-block">
+          <span className="eyebrow">OUR STORY — PLACEHOLDER</span>
+          <p>{siteConfig.biography}</p>
+        </div>
+      </section>
+      <QuoteCTA />
+    </SiteLayout>
+  ),
+});

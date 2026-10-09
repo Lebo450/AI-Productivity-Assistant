@@ -1,0 +1,353 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
+import { ListChecks, Plus, Save, Trash2, Eraser } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  ToolHeading,
+  ToolNotice,
+  PromptPreview,
+  useGeneration,
+  GenerateButton,
+  LoadingOutput,
+} from "@/components/workspace/tool-ui";
+import { completionPercent, type PlanOutput, type PlanTask } from "@/lib/ai/schemas";
+import { savePlan } from "@/lib/workspace.functions";
+import { workspaceOptions } from "./route";
+import { pageHead } from "@/lib/site-config";
+import type { Json } from "@/integrations/supabase/types";
+import { toast } from "sonner";
+export const Route = createFileRoute("/_authenticated/dashboard/planner")({
+  head: () =>
+    pageHead(
+      "AI Task Planner",
+      "Organise your work into editable steps and privately save plans to your account.",
+    ),
+  component: Planner,
+});
+const initial = {
+  description: "",
+  goal: "",
+  priority: "Medium",
+  deadline: "",
+  time: "",
+  context: "",
+};
+function Planner() {
+  const [inputs, setInputs] = useState(initial);
+  const [tasks, setTasks] = useState<PlanTask[]>([]);
+  const [planId, setPlanId] = useState<string>();
+  const [saving, setSaving] = useState(false);
+  const g = useGeneration<PlanOutput>("plan");
+  const save = useServerFn(savePlan);
+  const query = useQueryClient();
+  const { data } = useSuspenseQuery(workspaceOptions);
+  const update = (index: number, key: keyof PlanTask, value: string | boolean) =>
+    setTasks(tasks.map((t, i) => (i === index ? { ...t, [key]: value } : t)));
+  const percent = completionPercent(tasks);
+  return (
+    <>
+      <ToolHeading
+        title="AI Task Planner"
+        description="Big ideas are easier when you know your next step."
+        icon={<ListChecks />}
+      />
+      {data.plans.length > 0 && (
+        <label className="saved-plan-select">
+          Open a saved plan
+          <select
+            defaultValue=""
+            onChange={(e) => {
+              const p = data.plans.find((p) => p.id === e.target.value);
+              if (!p) return;
+              const plan = p.plan as unknown as PlanOutput & { tasks: PlanTask[] };
+              g.setOutput(plan);
+              setTasks(plan.tasks);
+              setPlanId(p.id);
+              setInputs({ ...initial, description: p.title });
+            }}
+          >
+            <option value="" disabled>
+              Select a saved plan
+            </option>
+            {data.plans.map((p) => (
+              <option value={p.id} key={p.id}>
+                {p.title}
+              </option>
+            ))}
+          </select>
+        </label>
+      )}
+      <div className="tool-columns">
+        <form
+          className="tool-input-panel"
+          onSubmit={async (e) => {
+            e.preventDefault();
+            setPlanId(undefined);
+            const result = await g.generate(inputs);
+            if (result) setTasks(result.tasks.map((t) => ({ ...t, completed: false })));
+          }}
+        >
+          <h2>What are you working towards?</h2>
+          <label>
+            Task description <span>*</span>
+            <textarea
+              required
+              rows={3}
+              value={inputs.description}
+              onChange={(e) => setInputs({ ...inputs, description: e.target.value })}
+              placeholder="e.g. Launch a new business website"
+            />
+          </label>
+          <label>
+            Main goal <span>*</span>
+            <input
+              required
+              value={inputs.goal}
+              onChange={(e) => setInputs({ ...inputs, goal: e.target.value })}
+              placeholder="What does success look like?"
+            />
+          </label>
+          <div className="form-grid">
+            <label>
+              Priority
+              <select
+                value={inputs.priority}
+                onChange={(e) => setInputs({ ...inputs, priority: e.target.value })}
+              >
+                <option>High</option>
+                <option>Medium</option>
+                <option>Low</option>
+              </select>
+            </label>
+            <label>
+              Deadline
+              <input
+                type="date"
+                value={inputs.deadline}
+                onChange={(e) => setInputs({ ...inputs, deadline: e.target.value })}
+              />
+            </label>
+          </div>
+          <label>
+            Available time
+            <input
+              value={inputs.time}
+              onChange={(e) => setInputs({ ...inputs, time: e.target.value })}
+              placeholder="e.g. 2 hours each weekday"
+            />
+          </label>
+          <label>
+            Additional context
+            <textarea
+              rows={3}
+              value={inputs.context}
+              onChange={(e) => setInputs({ ...inputs, context: e.target.value })}
+              placeholder="Resources, constraints, or anything else…"
+            />
+          </label>
+          <PromptPreview kind="plan" inputs={inputs} />
+          {g.error && (
+            <div className="error-alert" role="alert">
+              {g.error}
+            </div>
+          )}
+          <div className="tool-actions">
+            <GenerateButton busy={g.busy} stop={g.stop} label="Generate Plan" />
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={() => {
+                if (
+                  (tasks.length || g.output) &&
+                  !window.confirm(
+                    "Clear your current draft? Saved plans will remain in your account.",
+                  )
+                )
+                  return;
+                setInputs(initial);
+                setTasks([]);
+                setPlanId(undefined);
+                g.clear();
+              }}
+            >
+              <Eraser />
+              Clear Plan
+            </Button>
+          </div>
+        </form>
+        <section className="tool-output-panel">
+          <PlanResults output={g.output} busy={g.busy} />
+          {g.output && (
+            <>
+              <label>
+                Main objective
+                <input
+                  value={g.output.objective}
+                  onChange={(e) =>
+                    g.setOutput(g.output ? { ...g.output, objective: e.target.value } : null)
+                  }
+                />
+              </label>
+              <div className="plan-progress">
+                <span>
+                  {tasks.filter((t) => t.completed).length} of {tasks.length} tasks complete
+                </span>
+                <strong>{percent}%</strong>
+                <progress value={percent} max={100} />
+              </div>
+              <div className="plan-tasks">
+                {tasks.map((t, i) => (
+                  <div className="plan-task" key={i}>
+                    <div className="plan-task-title">
+                      <input
+                        type="checkbox"
+                        aria-label={`Complete ${t.name}`}
+                        checked={t.completed}
+                        onChange={(e) => update(i, "completed", e.target.checked)}
+                      />
+                      <input
+                        aria-label={`Task ${i + 1} name`}
+                        value={t.name}
+                        onChange={(e) => update(i, "name", e.target.value)}
+                      />
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        title="Remove task"
+                        aria-label="Remove task"
+                        onClick={() => setTasks(tasks.filter((_, j) => j !== i))}
+                      >
+                        <Trash2 size={15} />
+                      </Button>
+                    </div>
+                    <label>
+                      Description
+                      <textarea
+                        rows={2}
+                        value={t.description}
+                        onChange={(e) => update(i, "description", e.target.value)}
+                      />
+                    </label>
+                    <div className="form-grid">
+                      <label>
+                        Priority
+                        <select
+                          value={
+                            ["High", "Medium", "Low"].includes(t.priority) ? t.priority : "Medium"
+                          }
+                          onChange={(e) => update(i, "priority", e.target.value)}
+                        >
+                          <option>High</option>
+                          <option>Medium</option>
+                          <option>Low</option>
+                        </select>
+                      </label>
+                      <label>
+                        Suggested deadline
+                        <input
+                          type="date"
+                          value={/^\d{4}-\d{2}-\d{2}$/.test(t.deadline) ? t.deadline : ""}
+                          onChange={(e) => update(i, "deadline", e.target.value)}
+                        />
+                      </label>
+                    </div>
+                    <p className="duration-note">
+                      Estimated duration: {t.duration || "Not specified"}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <label>
+                Potential obstacles
+                <textarea
+                  rows={3}
+                  value={g.output.obstacles}
+                  onChange={(e) =>
+                    g.setOutput(g.output ? { ...g.output, obstacles: e.target.value } : null)
+                  }
+                />
+              </label>
+              <label>
+                Recommended next action
+                <textarea
+                  rows={2}
+                  value={g.output.nextAction}
+                  onChange={(e) =>
+                    g.setOutput(g.output ? { ...g.output, nextAction: e.target.value } : null)
+                  }
+                />
+              </label>
+              <div className="tool-actions">
+                <Button
+                  variant="outline"
+                  onClick={() =>
+                    setTasks([
+                      ...tasks,
+                      {
+                        name: "New task",
+                        description: "",
+                        priority: "Medium",
+                        duration: "",
+                        deadline: "",
+                        completed: false,
+                      },
+                    ])
+                  }
+                >
+                  <Plus />
+                  Add Task
+                </Button>
+                <Button
+                  disabled={saving}
+                  onClick={async () => {
+                    setSaving(true);
+                    try {
+                      const r = await save({
+                        data: {
+                          ...(planId ? { id: planId } : {}),
+                          title: inputs.description || g.output?.objective || "My plan",
+                          plan: { ...g.output, tasks } as unknown as Json,
+                        },
+                      });
+                      setPlanId(r.id);
+                      await query.invalidateQueries({ queryKey: ["workspace"] });
+                      toast.success("Your plan is saved privately to your account.");
+                    } catch (e) {
+                      toast.error(e instanceof Error ? e.message : "Your plan could not be saved.");
+                    } finally {
+                      setSaving(false);
+                    }
+                  }}
+                >
+                  <Save />
+                  {saving ? "Saving…" : "Save Changes"}
+                </Button>
+              </div>
+            </>
+          )}
+          <ToolNotice />
+        </section>
+      </div>
+    </>
+  );
+}
+function PlanResults({ output, busy }: { output: PlanOutput | null; busy: boolean }) {
+  return (
+    <>
+      <div className="output-title">
+        <h2>Your next steps</h2>
+      </div>
+      {busy ? (
+        <LoadingOutput />
+      ) : !output ? (
+        <div className="output-empty">
+          <ListChecks />
+          <h3>One step at a time.</h3>
+          <p>Your plan will start with your goal.</p>
+        </div>
+      ) : null}
+    </>
+  );
+}

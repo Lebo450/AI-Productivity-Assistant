@@ -1,0 +1,42 @@
+import { supabase } from "@/integrations/supabase/client";
+export async function generateTool(
+  kind: string,
+  inputs: Record<string, unknown>,
+  signal: AbortSignal,
+) {
+  const { data } = await supabase.auth.getSession();
+  if (!data.session) throw new Error("Sign in to use AI tools.");
+  const r = await fetch("/api/ai", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${data.session.access_token}`,
+    },
+    body: JSON.stringify({ kind, inputs }),
+    signal,
+  });
+  if (!r.ok) {
+    const e = await r.json();
+    throw new Error(e.error || `AI request failed (${r.status}).`);
+  }
+  if (!r.body) throw new Error("No AI response was received.");
+  const reader = r.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+  let output: unknown;
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buffer += decoder.decode(value, { stream: true });
+    const lines = buffer.split("\n");
+    buffer = lines.pop() || "";
+    for (const line of lines) {
+      if (!line.trim()) continue;
+      const event = JSON.parse(line);
+      if (event.type === "error") throw new Error(event.message);
+      if (event.type === "result") output = event.output;
+    }
+  }
+  if (!output) throw new Error("No usable AI result was generated.");
+  return output;
+}

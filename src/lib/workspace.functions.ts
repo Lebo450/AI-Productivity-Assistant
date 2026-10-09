@@ -1,0 +1,68 @@
+import { createServerFn } from "@tanstack/react-start";
+import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import type { Json } from "@/integrations/supabase/types";
+export const getWorkspace = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    const [c, p] = await Promise.all([
+      context.supabase
+        .from("conversations")
+        .select("id,title,updated_at")
+        .eq("user_id", context.userId)
+        .order("updated_at", { ascending: false }),
+      context.supabase
+        .from("saved_plans")
+        .select("*")
+        .eq("user_id", context.userId)
+        .order("updated_at", { ascending: false }),
+    ]);
+    if (c.error || p.error) throw new Error(c.error?.message || p.error?.message);
+    return {
+      conversations: c.data,
+      plans: p.data,
+      email: String(context.claims.email || "Your account"),
+    };
+  });
+export const createConversation = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    const { data, error } = await context.supabase
+      .from("conversations")
+      .insert({ user_id: context.userId })
+      .select("id")
+      .single();
+    if (error) throw new Error(error.message);
+    return data;
+  });
+export const getConversation = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((data: { id: string }) => data)
+  .handler(async ({ data, context }) => {
+    const r = await context.supabase
+      .from("conversations")
+      .select("*")
+      .eq("id", data.id)
+      .eq("user_id", context.userId)
+      .single();
+    if (r.error)
+      throw new Error("This conversation is unavailable or does not belong to your account.");
+    return r.data;
+  });
+export const savePlan = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((data: { id?: string; title: string; plan: Json }) => data)
+  .handler(async ({ data, context }) => {
+    if (!data.title.trim()) throw new Error("A plan title is required.");
+    const q = data.id
+      ? context.supabase
+          .from("saved_plans")
+          .update({ title: data.title, plan: data.plan, updated_at: new Date().toISOString() })
+          .eq("id", data.id)
+          .eq("user_id", context.userId)
+      : context.supabase
+          .from("saved_plans")
+          .insert({ title: data.title, plan: data.plan, user_id: context.userId });
+    const r = await q.select("id").single();
+    if (r.error) throw new Error(r.error.message);
+    return r.data;
+  });

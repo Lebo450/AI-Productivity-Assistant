@@ -1,0 +1,35 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { SiteLayout, PageIntro } from "@/components/site/layout";
+import { pageHead } from "@/lib/site-config";
+export const Route = createFileRoute("/terms")({
+  head: () =>
+    pageHead("Terms of service", "Terms for using the Connect Digital website and AI workspace."),
+  component: () => (
+    <SiteLayout>
+      <PageIntro
+        eyebrow="CONNECT DIGITAL"
+        title="Terms of service"
+        description="Draft policy — final business and legal details are still required."
+      />
+      <article className="container policy-content">
+        <h2>Website projects</h2>
+        <p>
+          Scope, fees, payment terms, timelines, and deliverables are agreed in an individual quote.
+          No fixed pricing or guaranteed business results are advertised here.
+        </p>
+        <h2>AI tools</h2>
+        <p>
+          Review all AI output. Generated suggestions are not professional advice or a guarantee of
+          accuracy or outcomes.
+        </p>
+        <h2>Accounts</h2>
+        <p>Keep your login credentials secure and use the service responsibly.</p>
+        <h2>Legal details</h2>
+        <p>
+          Terms placeholder: the owner must provide legal entity details, applicable jurisdiction,
+          cancellation rules, and final terms before public launch.
+        </p>
+      </article>
+    </SiteLayout>
+  ),
+});
