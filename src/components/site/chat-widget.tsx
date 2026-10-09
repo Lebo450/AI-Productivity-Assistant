@@ -24,7 +24,7 @@ import {
   PromptInputTextarea,
 } from "@/components/ai-elements/prompt-input";
 import { Shimmer } from "@/components/ai-elements/shimmer";
-import { Brand } from "@/components/site/brand";
+
 
 const STORAGE_KEY = "connect-digital-public-chat";
 export const PUBLIC_CHAT_OPEN_EVENT = "connect-digital:open-chat";
