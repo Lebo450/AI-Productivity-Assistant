@@ -27,7 +27,9 @@ import { Shimmer } from "@/components/ai-elements/shimmer";
 import { Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { pageHead } from "@/lib/site-config";
+import { readableError } from "@/lib/ai/error-message";
 import { toast } from "sonner";
+
 const threadOptions = (id: string) =>
   queryOptions({
     queryKey: ["conversation", id],
@@ -78,7 +80,7 @@ function ChatWindow({ id, initialMessages }: { id: string; initialMessages: UIMe
     id,
     messages: initialMessages,
     transport,
-    onError: (e) => toast.error(e.message),
+    onError: (e) => toast.error(readableError(e)),
     onFinish: () => {
       query.invalidateQueries({ queryKey: ["workspace"] });
       query.invalidateQueries({ queryKey: ["conversation", id] });
@@ -161,7 +163,7 @@ function ChatWindow({ id, initialMessages }: { id: string; initialMessages: UIMe
       </Conversation>
       {error && (
         <div className="error-alert" role="alert">
-          {error.message}
+          {readableError(error)}
         </div>
       )}
       <div className="chat-composer">

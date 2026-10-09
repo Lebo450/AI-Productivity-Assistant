@@ -8,6 +8,20 @@
       "when": 1791531266852,
       "tag": "0000_connect_digital_private_workspace",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791535111271,
+      "tag": "0001_create_public_chat_usage",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791535171631,
+      "tag": "0002_index_public_chat_usage_time",
+      "breakpoints": true
     }
   ]
 }

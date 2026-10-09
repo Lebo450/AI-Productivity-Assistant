@@ -1,0 +1,1 @@
+CREATE INDEX public_chat_usage_time_idx ON public.public_chat_usage (created_at);

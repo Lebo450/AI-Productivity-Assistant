@@ -27,6 +27,7 @@ import { Route as AuthenticatedDashboardHelpRouteImport } from './routes/_authen
 import { Route as AuthenticatedDashboardNotesRouteImport } from './routes/_authenticated/dashboard/notes'
 import { Route as AuthenticatedDashboardPlannerRouteImport } from './routes/_authenticated/dashboard/planner'
 import { Route as AuthenticatedDashboardSettingsRouteImport } from './routes/_authenticated/dashboard/settings'
+import { Route as ApiPublicChatRouteImport } from './routes/api/public/chat'
 import { Route as AuthenticatedDashboardChatThreadIdRouteImport } from './routes/_authenticated/dashboard/chat.$threadId'
 
 const IndexRoute = IndexRouteImport.update({
@@ -126,6 +127,11 @@ const AuthenticatedDashboardSettingsRoute =
     path: '/settings',
     getParentRoute: () => AuthenticatedDashboardRouteRoute,
   } as any)
+const ApiPublicChatRoute = ApiPublicChatRouteImport.update({
+  id: '/api/public/chat',
+  path: '/api/public/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedDashboardChatThreadIdRoute =
   AuthenticatedDashboardChatThreadIdRouteImport.update({
     id: '/$threadId',
@@ -150,6 +156,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/notes': typeof AuthenticatedDashboardNotesRoute
   '/dashboard/planner': typeof AuthenticatedDashboardPlannerRoute
   '/dashboard/settings': typeof AuthenticatedDashboardSettingsRoute
+  '/api/public/chat': typeof ApiPublicChatRoute
   '/dashboard/': typeof AuthenticatedDashboardIndexRoute
   '/dashboard/chat/$threadId': typeof AuthenticatedDashboardChatThreadIdRoute
 }
@@ -169,6 +176,7 @@ export interface FileRoutesByTo {
   '/dashboard/notes': typeof AuthenticatedDashboardNotesRoute
   '/dashboard/planner': typeof AuthenticatedDashboardPlannerRoute
   '/dashboard/settings': typeof AuthenticatedDashboardSettingsRoute
+  '/api/public/chat': typeof ApiPublicChatRoute
   '/dashboard': typeof AuthenticatedDashboardIndexRoute
   '/dashboard/chat/$threadId': typeof AuthenticatedDashboardChatThreadIdRoute
 }
@@ -191,6 +199,7 @@ export interface FileRoutesById {
   '/_authenticated/dashboard/notes': typeof AuthenticatedDashboardNotesRoute
   '/_authenticated/dashboard/planner': typeof AuthenticatedDashboardPlannerRoute
   '/_authenticated/dashboard/settings': typeof AuthenticatedDashboardSettingsRoute
+  '/api/public/chat': typeof ApiPublicChatRoute
   '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexRoute
   '/_authenticated/dashboard/chat/$threadId': typeof AuthenticatedDashboardChatThreadIdRoute
 }
@@ -213,6 +222,7 @@ export interface FileRouteTypes {
     | '/dashboard/notes'
     | '/dashboard/planner'
     | '/dashboard/settings'
+    | '/api/public/chat'
     | '/dashboard/'
     | '/dashboard/chat/$threadId'
   fileRoutesByTo: FileRoutesByTo
@@ -232,6 +242,7 @@ export interface FileRouteTypes {
     | '/dashboard/notes'
     | '/dashboard/planner'
     | '/dashboard/settings'
+    | '/api/public/chat'
     | '/dashboard'
     | '/dashboard/chat/$threadId'
   id:
@@ -253,6 +264,7 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard/notes'
     | '/_authenticated/dashboard/planner'
     | '/_authenticated/dashboard/settings'
+    | '/api/public/chat'
     | '/_authenticated/dashboard/'
     | '/_authenticated/dashboard/chat/$threadId'
   fileRoutesById: FileRoutesById
@@ -268,6 +280,7 @@ export interface RootRouteChildren {
   ServicesRoute: typeof ServicesRoute
   TermsRoute: typeof TermsRoute
   ApiAiRoute: typeof ApiAiRoute
+  ApiPublicChatRoute: typeof ApiPublicChatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -398,6 +411,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardSettingsRouteImport
       parentRoute: typeof AuthenticatedDashboardRouteRoute
     }
+    '/api/public/chat': {
+      id: '/api/public/chat'
+      path: '/api/public/chat'
+      fullPath: '/api/public/chat'
+      preLoaderRoute: typeof ApiPublicChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/dashboard/chat/$threadId': {
       id: '/_authenticated/dashboard/chat/$threadId'
       path: '/$threadId'
@@ -473,6 +493,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRoute: ServicesRoute,
   TermsRoute: TermsRoute,
   ApiAiRoute: ApiAiRoute,
+  ApiPublicChatRoute: ApiPublicChatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
