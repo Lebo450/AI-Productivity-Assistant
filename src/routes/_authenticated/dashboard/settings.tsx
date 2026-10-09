@@ -1,3 +1,66 @@
-import {createFileRoute} from '@tanstack/react-router';import {useState} from 'react';import {useSuspenseQuery} from '@tanstack/react-query';import {Settings,LockKeyhole,ShieldCheck} from 'lucide-react';import {Button} from '@/components/ui/button';import {ToolHeading} from '@/components/workspace/tool-ui';import {workspaceOptions} from './route';import {supabase} from '@/integrations/supabase/client';import {pageHead} from '@/lib/site-config';
-export const Route=createFileRoute('/_authenticated/dashboard/settings')({head:()=>pageHead('Settings','Manage your Connect Digital account and workspace preferences.'),component:SettingsPage});
-function SettingsPage(){const{data}=useSuspenseQuery(workspaceOptions);const[message,setMessage]=useState('');return <><ToolHeading title="Settings" description="Your account. Your workspace." icon={<Settings/>}/><section className="settings-section"><h2>Account details</h2><label>Email address<input value={data.email} readOnly/></label><div className="settings-row"><LockKeyhole/><div><h3>Password & security</h3><p>We'll email you a link to securely reset your password.</p></div><Button variant="outline" onClick={async()=>{const{error}=await supabase.auth.resetPasswordForEmail(data.email,{redirectTo:window.location.origin+'/auth'});setMessage(error?error.message:'Password reset email requested. Check your inbox.');}}>Reset password</Button></div>{message&&<div role="status" className="success-alert">{message}</div>}<div className="settings-row"><ShieldCheck/><div><h3>Your saved work stays private</h3><p>Conversations and saved plans are accessible only to your signed-in account.</p></div></div></section></>}
+import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { Settings, LockKeyhole, ShieldCheck } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ToolHeading } from "@/components/workspace/tool-ui";
+import { workspaceOptions } from "./route";
+import { supabase } from "@/integrations/supabase/client";
+import { pageHead } from "@/lib/site-config";
+export const Route = createFileRoute("/_authenticated/dashboard/settings")({
+  head: () =>
+    pageHead("Settings", "Manage your Connect Digital account and workspace preferences."),
+  component: SettingsPage,
+});
+function SettingsPage() {
+  const { data } = useSuspenseQuery(workspaceOptions);
+  const [message, setMessage] = useState("");
+  return (
+    <>
+      <ToolHeading
+        title="Settings"
+        description="Your account. Your workspace."
+        icon={<Settings />}
+      />
+      <section className="settings-section">
+        <h2>Account details</h2>
+        <label>
+          Email address
+          <input value={data.email} readOnly />
+        </label>
+        <div className="settings-row">
+          <LockKeyhole />
+          <div>
+            <h3>Password & security</h3>
+            <p>We'll email you a link to securely reset your password.</p>
+          </div>
+          <Button
+            variant="outline"
+            onClick={async () => {
+              const { error } = await supabase.auth.resetPasswordForEmail(data.email, {
+                redirectTo: window.location.origin + "/auth",
+              });
+              setMessage(
+                error ? error.message : "Password reset email requested. Check your inbox.",
+              );
+            }}
+          >
+            Reset password
+          </Button>
+        </div>
+        {message && (
+          <div role="status" className="success-alert">
+            {message}
+          </div>
+        )}
+        <div className="settings-row">
+          <ShieldCheck />
+          <div>
+            <h3>Your saved work stays private</h3>
+            <p>Conversations and saved plans are accessible only to your signed-in account.</p>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

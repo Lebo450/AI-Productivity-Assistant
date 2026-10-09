@@ -81,16 +81,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Connect Digital" },
-      { name: "description", content: "Professional websites and practical AI tools for small businesses." },
+      {
+        name: "description",
+        content: "Professional websites and practical AI tools for small businesses.",
+      },
       { name: "author", content: "Lovable" },
       { property: "og:title", content: "Connect Digital" },
-      { property: "og:description", content: "Professional websites and practical AI tools for small businesses." },
+      {
+        property: "og:description",
+        content: "Professional websites and practical AI tools for small businesses.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap",
+      },
       {
         rel: "stylesheet",
         href: appCss,
@@ -122,7 +131,7 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const router = useRouter();
   useEffect(() => {
-    const { data } = supabase.auth.onAuthStateChange(event => {
+    const { data } = supabase.auth.onAuthStateChange((event) => {
       if (!["SIGNED_IN", "SIGNED_OUT", "USER_UPDATED"].includes(event)) return;
       router.invalidate();
       if (event !== "SIGNED_OUT") queryClient.invalidateQueries();
