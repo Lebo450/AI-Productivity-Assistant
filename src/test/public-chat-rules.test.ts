@@ -5,6 +5,8 @@ import {
   PUBLIC_CHAT_MAX_PER_DAY,
 } from "@/lib/ai/public-chat.server";
 import { publicChatInstructions } from "@/lib/ai/prompts.server";
+import { readableError } from "@/lib/ai/error-message";
+
 
 const chatRequest = (body: unknown, origin = "http://localhost:8080") =>
   new Request("http://localhost:8080/api/public/chat", {
@@ -46,4 +48,12 @@ describe("Public visitor chat rules", () => {
     expect(publicChatInstructions).toContain("Never invent prices");
     expect(publicChatInstructions).toContain("testimonials");
   });
+  it("shows a plain sentence when a request fails", () => {
+    expect(readableError(new Error('{"error":"Please wait a few minutes."}'))).toBe(
+      "Please wait a few minutes.",
+    );
+    expect(readableError(new Error("Sign in to use AI tools."))).toBe("Sign in to use AI tools.");
+    expect(readableError(new Error(""))).toBe("Something went wrong. Please try again.");
+  });
 });
+

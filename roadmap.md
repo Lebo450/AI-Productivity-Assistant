@@ -7,7 +7,7 @@
 - [ ] Verify new-chat switching and two separate histories after reload; the latest browser check did not confirm the second history
 - [ ] Diagnose mobile horizontal overflow
 - [x] Public visitor chat verified: send, genuine reply, reload restore, new chat, mobile fit
-- [ ] Confirm the free assistant limit message appears after the cap is reached
+- [x] Free assistant limit enforced and shown as a plain sentence
 
 - [ ] Complete cross-account access, signup/password reset and final lint checks
 
