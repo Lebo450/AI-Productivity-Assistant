@@ -27,7 +27,8 @@ import { Shimmer } from "@/components/ai-elements/shimmer";
 import { Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { pageHead } from "@/lib/site-config";
-import { toast } from "sonner";
+import { readableError } from "@/lib/ai/error-message";
+
 const threadOptions = (id: string) =>
   queryOptions({
     queryKey: ["conversation", id],

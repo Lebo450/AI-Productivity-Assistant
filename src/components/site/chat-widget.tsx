@@ -24,6 +24,8 @@ import {
   PromptInputTextarea,
 } from "@/components/ai-elements/prompt-input";
 import { Shimmer } from "@/components/ai-elements/shimmer";
+import { readableError } from "@/lib/ai/error-message";
+
 
 
 const STORAGE_KEY = "connect-digital-public-chat";
