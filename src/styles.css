@@ -2533,9 +2533,10 @@ h3 {
   font-size: 13px;
 }
 .chat-panel-title span {
-  font-size: 9px;
+  font-size: 10px;
   color: var(--muted-foreground);
 }
+
 .chat-panel-tools {
   display: flex;
   gap: 4px;
@@ -2558,20 +2559,22 @@ h3 {
   margin-bottom: 6px;
 }
 .chat-panel-empty p {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--muted-foreground);
   margin-bottom: 18px;
 }
+
 .chat-panel-composer {
   padding: 12px;
   border-top: 1px solid var(--border);
   background: var(--background);
 }
 .chat-panel .chat-private {
-  font-size: 8px;
+  font-size: 10px;
   line-height: 1.7;
   max-width: 250px;
 }
+
 .chat-panel .chat-private a {
   text-decoration: underline;
 }
