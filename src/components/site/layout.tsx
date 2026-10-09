@@ -1,8 +1,10 @@
-import { Link, useLocation } from "@tanstack/react-router";
+import { ClientOnly, Link, useLocation } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import { ArrowUpRight, Menu, X, Mail, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Brand } from "./brand";
+import { PUBLIC_CHAT_OPEN_EVENT, PublicChatWidget } from "./chat-widget";
+
 import { siteConfig } from "@/lib/site-config";
 const links = [
   ["/", "Home"],
@@ -82,7 +84,14 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             <Link to="/dashboard">AI productivity tools</Link>
             <Link to="/auth">Client login</Link>
             <Link to="/responsible-ai">Responsible AI</Link>
+            <button
+              className="footer-chat"
+              onClick={() => window.dispatchEvent(new Event(PUBLIC_CHAT_OPEN_EVENT))}
+            >
+              Ask our AI assistant
+            </button>
           </div>
+
           <div>
             <h3>Get in touch</h3>
             {siteConfig.email ? (
@@ -107,7 +116,11 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           </div>
         </div>
       </footer>
+      <ClientOnly>
+        <PublicChatWidget />
+      </ClientOnly>
     </>
+
   );
 }
 export function PageIntro({
