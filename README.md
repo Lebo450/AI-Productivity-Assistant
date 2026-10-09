@@ -1,418 +1,167 @@
-# Connect & Create
+## 14. README.md FILE REQUIREMENT
 
-PROJECT: CONNECT DIGITAL — PROFESSIONAL BUSINESS WEBSITE & AI DASHBOARD
+Create a complete and professional `README.md` file in the root directory of the Connect Digital project.
 
-Act as an expert full-stack developer, UI/UX designer, SaaS product designer, and responsible AI specialist.
+The README must be written in clear, beginner-friendly English and explain the project to someone with little or no programming experience.
 
-Build a modern, responsive, professional web application called Connect Digital.
+Include the following sections:
 
-Connect Digital is a business that helps small businesses, startups, entrepreneurs, and local service providers establish a professional online presence by building attractive, affordable, mobile-friendly websites.
+### 1. Project Overview
 
-The application should have a clean SaaS-style dashboard and a professional public-facing website that explains our services and encourages potential customers to contact us.
+* Project name: Connect Digital.
+* Explain that Connect Digital helps small businesses establish an online presence through professional website design and development.
+* Describe the purpose of the web application and its AI productivity tools.
+* Explain the main goals and intended users of the application.
 
-The application must be easy to use for beginners, fast, visually appealing, and simple to maintain.
+### 2. Features
 
-1. DESIGN AND BRAND IDENTITY
+Document the features that are actually implemented, including:
 
-Create a clean, modern, minimalist design that feels trustworthy and professional.
+* Responsive public-facing business website.
+* Homepage, Services, About Us, and Contact pages.
+* Modern SaaS-style dashboard.
+* Sidebar navigation.
+* Smart Email Generator.
+* Meeting Notes Summarizer.
+* AI Task Planner.
+* AI Chatbot Interface.
+* Editable AI-generated outputs.
+* Copy-to-clipboard functionality.
+* Form validation and error handling.
+* Authentication and user settings, if implemented.
+* Database persistence, if implemented.
+* Responsible AI disclaimer.
 
-Use comfortable, soft, muted colours that are easy on the eyes while maintaining excellent readability and contrast.
+Clearly distinguish between completed features and features that still require configuration or development. Do not describe planned features as fully functional.
 
-Suggested colour palette:
+### 3. Tools and Technologies Used
 
-- Primary colour: Muted navy blue (#334155)
-- Secondary colour: Soft teal (#5F9E9A)
-- Main background: Off-white (#F8FAFC)
-- Card background: White (#FFFFFF)
-- Primary text: Dark slate (#1E293B)
-- Secondary text: Muted grey (#64748B)
-- Borders: Light grey (#E2E8F0)
-- Accent colour: Soft blue (#DBEAFE)
+List the technologies actually used in the project and briefly explain their purpose.
 
-Use consistent typography, generous spacing, rounded cards, subtle shadows, simple line icons, and accessible buttons.
+Potential technologies include:
 
-Avoid excessively bright colours, unnecessary animations, clutter, and overwhelming gradients.
+* React — building the user interface.
+* TypeScript — adding type safety to the application.
+* Tailwind CSS — styling and responsive layouts.
+* Vite — development server and build tooling, if used.
+* Lucide React — interface icons, if used.
+* Lovable — AI-assisted application development.
+* Supabase — authentication, database storage, and backend services, if configured.
+* AI provider/API — powering AI tools, if configured.
+* Git and GitHub — version control, if configured.
 
-The website should look like a premium SaaS platform rather than a generic template.
+Only list technologies that are actually used or configured. Identify optional integrations separately.
 
-2. PUBLIC-FACING WEBSITE
+### 4. Project Structure
 
-Create the following public pages:
+Provide a simple overview of the main folders and files.
 
-Homepage
+Explain the purpose of important directories, components, pages, configuration files, and server-side functions.
+
+Use the actual project structure rather than inventing filenames or directories.
+
+### 5. Setup Instructions
+
+Provide step-by-step instructions for a beginner to run the project locally.
 
 Include:
 
-- A professional navigation bar with the Connect Digital logo.
-- Navigation links: Home, Services, About Us, Contact.
-- A prominent hero headline: "Your Business Deserves a Better Website."
-- Supporting text: "We help small businesses build a professional online presence with modern, affordable websites designed to attract customers."
-- A primary call-to-action button: "Get Your Website."
-- A secondary button: "Explore Our Services."
-- A visual preview of a modern business website displayed inside a laptop or browser mockup.
-- A section explaining why businesses need a website.
-- A services section featuring website design, mobile-friendly websites, landing pages, website redesigns, and basic SEO setup.
-- A simple three-step process: Tell Us About Your Business, We Build Your Website, Launch Your Online Presence.
-- A section highlighting the benefits of working with Connect Digital.
-- A frequently asked questions section.
-- A final call to action encouraging visitors to request a quote.
-- A professional footer with contact details placeholders, navigation links, privacy policy, and terms of service.
+1. Prerequisites, such as Node.js and npm, where applicable.
+2. How to obtain the project source code.
+3. How to open the project folder in a terminal or code editor.
+4. How to install dependencies using the correct package manager.
+5. How to configure environment variables.
+6. How to start the development server.
+7. How to open the local website in a browser.
+8. How to build the application for production.
 
-Do not invent customer testimonials, client logos, business results, or awards. Use clearly labelled placeholders until genuine information is provided.
+Use the actual scripts and commands defined in the project's `package.json`. Do not assume commands exist without checking.
 
-Services Page
+### 6. Environment Variables and API Configuration
 
-Present our services in attractive cards:
+Explain how to configure the environment variables required by the application.
 
-1. Small Business Website Design.
-2. One-Page Websites.
-3. Multi-Page Business Websites.
-4. Website Redesign.
-5. Landing Page Design.
-6. Basic Search Engine Optimisation.
+Create a `.env.example` file containing placeholder variable names for the integrations that the project actually uses.
 
-Each service card must contain a short description, key benefits, and a "Request a Quote" button.
+Never include real API keys, passwords, access tokens, or other secrets.
 
-Do not advertise fixed prices unless they are provided by the business owner.
+Explain that secret AI provider keys must only be stored in secure server-side environment variables and never exposed in client-side code.
 
-About Us Page
+Document any Supabase URL, publishable key, or other configuration required by the actual implementation.
 
-Explain that Connect Digital helps businesses improve their online presence through practical, professional website solutions.
+### 7. AI Features Configuration
 
-Include a mission statement, our approach, and a section explaining how we work with clients.
+Explain how to configure the AI provider required for:
 
-Use editable placeholder content for any personal biography or company history that has not yet been provided.
+* Smart Email Generator.
+* Meeting Notes Summarizer.
+* AI Task Planner.
+* AI Chatbot Interface.
 
-Contact Page
+Document which environment variables and server-side functions are required.
 
-Include a working contact form with:
+If an AI integration has not been implemented, clearly state that it still needs to be configured.
 
-- Full name.
-- Business name.
-- Email address.
-- Phone number (optional).
-- Type of website required.
-- Estimated budget (optional).
-- Project description.
-- Submit button.
+### 8. Testing and Troubleshooting
 
-Validate required fields and display a clear success or error message.
+Include instructions for running available tests and linting commands, based on the scripts actually present in the project.
 
-Connect the form to a real backend or form-processing service when configured. Never pretend a message has been sent if the submission failed. If no backend is configured, clearly explain that the form requires configuration and provide a usable email contact fallback.
+Explain common issues, including:
 
-Use placeholders for email address, phone number, and social media links.
+* Dependencies failing to install.
+* Development server failing to start.
+* Missing environment variables.
+* AI API errors.
+* Supabase connection problems.
+* Authentication or database permission errors.
 
-3. PRIVATE SAAS-STYLE DASHBOARD
+Provide practical troubleshooting steps without claiming that tests have passed unless they have actually been run.
 
-Create a separate dashboard at /dashboard with a modern sidebar navigation.
+### 9. Deployment Instructions
 
-The sidebar must include:
+Explain how to prepare the project for deployment.
 
-- Dashboard Home.
-- Smart Email Generator.
-- Meeting Notes Summarizer.
-- AI Task Planner.
-- AI Chat.
-- Settings.
-- Help & Support.
+Include suitable deployment options supported by the project's configuration, such as Lovable's publishing options or another compatible hosting platform.
 
-Include the Connect Digital logo at the top of the sidebar and a profile area at the bottom.
+Explain the difference between local development and a published production website.
 
-On mobile devices, convert the sidebar into a collapsible navigation drawer.
+Document any required production environment variables, backend deployment steps, custom domain configuration, and security considerations.
 
-The dashboard home page should include:
+### 10. Security and Responsible AI
 
-- A welcoming heading: "Welcome to Connect Digital."
-- A short description of the available AI productivity tools.
-- Four feature cards linking to each tool.
-- A simple recent activity section.
-- Helpful empty states for new users.
-- A quick-access section for frequently used tools.
+Document the following:
 
-Do not display fabricated usage statistics or pretend that AI tasks have been completed.
+* Never commit secrets or API keys to Git.
+* Validate user input.
+* Protect private user data.
+* Configure appropriate database access policies if Supabase is used.
+* Review AI-generated content before using it.
+* Avoid submitting sensitive or confidential information to AI tools.
+* Do not represent unconfigured AI integrations as functional.
 
-4. SMART EMAIL GENERATOR
+Include the responsible AI disclaimer attributed to Lebohang April.
 
-Build a functional Smart Email Generator page.
+### 11. Project Maintenance
 
-Users should be able to enter:
+Explain how to:
 
-- Email purpose.
-- Recipient.
-- Main points to communicate.
-- Preferred tone.
-- Desired email length.
-- Language.
+* Update website text and branding.
+* Add or modify services.
+* Change the colour palette.
+* Update dependencies carefully.
+* Maintain environment variables.
+* Back up project source code.
 
-Include tone options such as:
+### README QUALITY REQUIREMENTS
 
-- Professional.
-- Friendly.
-- Persuasive.
-- Formal.
-- Apologetic.
-- Follow-up.
+* Save the file as `README.md` in the root of the project.
+* Use standard Markdown headings, lists, code blocks, and tables where appropriate.
+* Keep instructions accurate and beginner-friendly.
+* Use commands that match the actual project configuration.
+* Do not include fabricated integrations, test results, credentials, or completed features.
+* Ensure all documented commands and file paths correspond to the generated project.
+* Create the actual file in the project, not merely a description of what it should contain.
 
-Include a structured prompt preview showing how the user's inputs are used to generate the email.
+Also create a `.env.example` file if the application requires environment variables.
 
-Provide buttons for:
-
-- Generate Email.
-- Regenerate.
-- Copy Email.
-- Clear Form.
-
-Display the generated email in an editable text editor or textarea.
-
-Allow users to modify the subject line and email body before copying the result.
-
-The tool must produce a genuine AI-generated result when an AI provider is configured. Do not hardcode a fake generated response and present it as live AI.
-
-5. MEETING NOTES SUMMARIZER
-
-Build a Meeting Notes Summarizer.
-
-Allow users to paste raw meeting notes into a large text area.
-
-Provide options to generate:
-
-- A short summary.
-- Key discussion points.
-- Decisions made.
-- Action items.
-- Assigned responsibilities, when stated in the notes.
-- Deadlines, when stated in the notes.
-- Follow-up questions.
-
-Include a structured prompt preview.
-
-Display the results in clearly separated sections with editable text fields.
-
-Provide buttons for:
-
-- Summarize Notes.
-- Copy Summary.
-- Copy Action Items.
-- Regenerate.
-- Clear Notes.
-
-Never invent meeting decisions, deadlines, attendees, or assigned responsibilities. If information is missing, state that it was not specified.
-
-6. AI TASK PLANNER
-
-Build an AI Task Planner that helps users organise their work.
-
-Include input fields for:
-
-- Task description.
-- Main goal.
-- Priority.
-- Deadline.
-- Available time.
-- Additional context.
-
-Allow users to generate a structured plan containing:
-
-- Main objective.
-- Step-by-step tasks.
-- Suggested priorities.
-- Estimated durations where reasonable.
-- Suggested deadlines based on user-provided constraints.
-- Potential obstacles.
-- Recommended next action.
-
-Allow users to edit task names, descriptions, priorities, and deadlines.
-
-Include checkboxes to mark tasks as completed and a progress indicator calculated from the actual completed tasks.
-
-Provide buttons for:
-
-- Generate Plan.
-- Add Task.
-- Save Changes.
-- Clear Plan.
-
-Persist saved plans for authenticated users using a configured database. If persistence is unavailable, clearly communicate that changes will not be saved permanently.
-
-Do not promise that the AI can guarantee deadlines or outcomes.
-
-7. AI CHATBOT INTERFACE
-
-Create a modern AI Chat interface with a clean conversational layout.
-
-Include:
-
-- A message history area.
-- A text input field.
-- A Send button.
-- A New Chat button.
-- Loading indicators while a response is being generated.
-- Clear error messages when a request fails.
-- Copy buttons for AI responses.
-- Suggested prompts displayed when starting a conversation.
-
-Suggested prompts:
-
-- Help me write a professional email.
-- Summarise these meeting notes.
-- Help me plan my workday.
-- Create a website project checklist.
-- Help me improve my business website.
-
-The interface must support multi-turn conversations where the configured AI provider allows it.
-
-Do not expose API keys in frontend code. Route AI requests through a secure backend or server-side function.
-
-If no AI service has been connected, display a clear setup message instead of pretending to provide live AI responses.
-
-8. AI INTEGRATION AND STRUCTURED PROMPTS
-
-Use a real AI provider through secure server-side functions.
-
-Keep the AI provider configurable so it can be connected later without rebuilding the entire application.
-
-For each AI tool:
-
-- Validate user input.
-- Construct a structured prompt using the user's actual inputs.
-- Separate system instructions from user-provided content.
-- Request clear, organised output.
-- Handle errors and loading states.
-- Allow the user to edit generated content.
-- Provide copy functionality.
-- Avoid sending unnecessary personal or confidential information.
-- Never expose API keys or secret credentials in the browser.
-
-If an AI API key or provider is not configured, clearly indicate which setup step is required.
-
-Do not build a fake AI experience using hardcoded responses.
-
-9. RESPONSIBLE AI DISCLAIMER
-
-Display the following responsible AI disclaimer in the dashboard footer and where appropriate within the AI tools:
-
-"Responsible AI Notice — Prepared by Lebohang April. AI-generated content may contain errors or omissions. Please review and verify all outputs before using or sharing them. Do not enter passwords, sensitive personal information, or confidential business information. Users remain responsible for the final content and decisions."
-
-Include a link to a simple Responsible AI page that explains:
-
-- AI outputs may be inaccurate.
-- Users should review generated content.
-- Sensitive information should not be entered unnecessarily.
-- AI outputs should not replace qualified professional advice where appropriate.
-- Users control whether they copy, edit, or share generated content.
-
-Do not imply that naming the disclaimer author certifies or independently verifies the AI system.
-
-10. AUTHENTICATION AND USER SETTINGS
-
-Provide an authentication-ready structure for the dashboard.
-
-If authentication is implemented, use a secure authentication service such as Supabase Auth.
-
-Include:
-
-- Sign-up.
-- Login.
-- Logout.
-- Password reset.
-- Protected dashboard routes.
-- User-specific data access.
-
-Users must not be able to access another user's saved tasks, notes, or private data.
-
-If Supabase is used, implement appropriate Row Level Security policies for private user data.
-
-Do not collect unnecessary personal information.
-
-If authentication or the database has not been configured, explain the required setup and do not claim that user accounts or saved data are operational.
-
-11. TECHNICAL REQUIREMENTS
-
-Use:
-
-- React.
-- TypeScript.
-- Tailwind CSS.
-- A reusable component architecture.
-- Lucide icons.
-- Supabase where a database or authentication service is required.
-- Secure server-side functions for AI integrations.
-
-Build reusable components for navigation, buttons, forms, cards, alerts, modals, and page layouts.
-
-Use clean, maintainable code and a consistent design system.
-
-Ensure all routes work correctly.
-
-The application must be responsive across desktop, tablet, and mobile screens.
-
-Include:
-
-- Accessible labels.
-- Keyboard navigation.
-- Good colour contrast.
-- Form validation.
-- Loading states.
-- Empty states.
-- Error handling.
-- Confirmation messages.
-- Appropriate page titles.
-- Basic SEO metadata for public pages.
-
-Do not add unnecessary dependencies or complex features that are not required.
-
-12. FUNCTIONALITY AND TESTING
-
-All visible buttons and navigation links must perform their intended actions.
-
-Verify:
-
-- Public pages load correctly.
-- Navigation works.
-- Dashboard navigation works.
-- Forms validate input.
-- Email generation works when AI is configured.
-- Meeting summarisation works when AI is configured.
-- Task planning works when AI is configured.
-- Chat works when AI is configured.
-- Copy buttons work.
-- Generated outputs can be edited.
-- Task checkboxes update progress.
-- Errors are displayed clearly.
-- Mobile layouts work correctly.
-- Authentication and database permissions work if configured.
-
-Do not mark any feature as complete unless it actually works.
-
-13. FINAL DESIGN GOAL
-
-Deliver a polished, modern business website for Connect Digital together with a practical SaaS-style AI productivity dashboard.
-
-Prioritise simplicity, professionalism, accessibility, usability, and maintainability.
-
-Build the application in a way that allows a beginner business owner to customise the text, logo, contact details, services, and colours without needing to rebuild the entire application.
-
-Start by implementing the public website and dashboard shell, then build and test each AI tool. Clearly identify any integrations that still require API keys or account configuration.
-
-The final result should look professional enough to demonstrate to potential business clients while remaining simple enough for a beginner to manage.
-
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/8859dea4-d714-4508-9c06-7d5573ff37d9).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
-```
+Before completing the project, verify that the README reflects the final implementation and update it whenever the project structure or setup instructions change.
