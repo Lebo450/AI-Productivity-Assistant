@@ -6,7 +6,9 @@
 - [x] Responsible AI notices and unit tests
 - [ ] Verify new-chat switching and two separate histories after reload; the latest browser check did not confirm the second history
 - [ ] Diagnose mobile horizontal overflow
-- [ ] Verify the public visitor chat end to end in the browser (send, reply, reload restore, new chat, limit message)
+- [x] Public visitor chat verified: send, genuine reply, reload restore, new chat, mobile fit
+- [ ] Confirm the free assistant limit message appears after the cap is reached
+
 - [ ] Complete cross-account access, signup/password reset and final lint checks
 
 
