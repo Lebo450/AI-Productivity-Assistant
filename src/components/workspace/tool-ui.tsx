@@ -97,6 +97,7 @@ export function useGeneration<T>(kind: string) {
       return result;
     } catch (e) {
       if (e instanceof Error && e.name !== "AbortError") setError(e.message);
+      return null;
     } finally {
       setBusy(false);
     }
