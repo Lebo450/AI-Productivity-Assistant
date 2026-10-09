@@ -7,7 +7,6 @@ import {
 import { publicChatInstructions } from "@/lib/ai/prompts.server";
 import { readableError } from "@/lib/ai/error-message";
 
-
 const chatRequest = (body: unknown, origin = "http://localhost:8080") =>
   new Request("http://localhost:8080/api/public/chat", {
     method: "POST",
@@ -18,7 +17,10 @@ const chatRequest = (body: unknown, origin = "http://localhost:8080") =>
 describe("Public visitor chat rules", () => {
   it("refuses requests that do not come from this website", async () => {
     const response = await handlePublicChat(
-      chatRequest({ messages: [{ id: "1", role: "user", parts: [{ type: "text", text: "hi" }] }] }, "https://not-connect-digital.test"),
+      chatRequest(
+        { messages: [{ id: "1", role: "user", parts: [{ type: "text", text: "hi" }] }] },
+        "https://not-connect-digital.test",
+      ),
     );
     expect(response.status).toBe(403);
   });
@@ -35,7 +37,9 @@ describe("Public visitor chat rules", () => {
   });
   it("refuses an empty message", async () => {
     const response = await handlePublicChat(
-      chatRequest({ messages: [{ id: "1", role: "user", parts: [{ type: "text", text: "   " }] }] }),
+      chatRequest({
+        messages: [{ id: "1", role: "user", parts: [{ type: "text", text: "   " }] }],
+      }),
     );
     expect(response.status).toBe(400);
   });
@@ -56,4 +60,3 @@ describe("Public visitor chat rules", () => {
     expect(readableError(new Error(""))).toBe("Something went wrong. Please try again.");
   });
 });
-

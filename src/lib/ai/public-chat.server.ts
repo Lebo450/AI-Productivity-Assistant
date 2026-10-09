@@ -72,9 +72,7 @@ export async function handlePublicChat(request: Request) {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const ipHash = await hashIp(clientIp(request));
     const dayStart = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
-    const windowStart = new Date(
-      Date.now() - PUBLIC_CHAT_WINDOW_MINUTES * 60 * 1000,
-    ).toISOString();
+    const windowStart = new Date(Date.now() - PUBLIC_CHAT_WINDOW_MINUTES * 60 * 1000).toISOString();
     const [day, window] = await Promise.all([
       supabaseAdmin
         .from("public_chat_usage")
@@ -104,9 +102,7 @@ export async function handlePublicChat(request: Request) {
         { status: 429 },
       );
 
-    const inserted = await supabaseAdmin
-      .from("public_chat_usage")
-      .insert({ ip_hash: ipHash });
+    const inserted = await supabaseAdmin.from("public_chat_usage").insert({ ip_hash: ipHash });
     if (inserted.error)
       return Response.json(
         { error: "The assistant is temporarily unavailable. Please try again shortly." },

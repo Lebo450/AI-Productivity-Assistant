@@ -30,7 +30,6 @@ import { pageHead } from "@/lib/site-config";
 import { readableError } from "@/lib/ai/error-message";
 import { toast } from "sonner";
 
-
 const threadOptions = (id: string) =>
   queryOptions({
     queryKey: ["conversation", id],

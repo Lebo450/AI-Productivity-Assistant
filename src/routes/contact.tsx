@@ -62,17 +62,15 @@ function Contact() {
             setStatus("");
             const f = new FormData(e.currentTarget);
             const val = (k: string) => String(f.get(k) || "").trim();
-            const { error } = await supabase
-              .from("contact_requests")
-              .insert({
-                full_name: val("full_name"),
-                business_name: val("business_name"),
-                email: val("email"),
-                phone: val("phone") || null,
-                website_type: val("website_type"),
-                budget: val("budget") || null,
-                description: val("description"),
-              });
+            const { error } = await supabase.from("contact_requests").insert({
+              full_name: val("full_name"),
+              business_name: val("business_name"),
+              email: val("email"),
+              phone: val("phone") || null,
+              website_type: val("website_type"),
+              budget: val("budget") || null,
+              description: val("description"),
+            });
             setStatus(
               error
                 ? `Your request could not be submitted: ${error.message}`

@@ -120,7 +120,6 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         <PublicChatWidget />
       </ClientOnly>
     </>
-
   );
 }
 export function PageIntro({

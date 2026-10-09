@@ -26,8 +26,6 @@ import {
 import { Shimmer } from "@/components/ai-elements/shimmer";
 import { readableError } from "@/lib/ai/error-message";
 
-
-
 const STORAGE_KEY = "connect-digital-public-chat";
 export const PUBLIC_CHAT_OPEN_EVENT = "connect-digital:open-chat";
 
@@ -54,10 +52,7 @@ export function PublicChatWidget() {
   const [stored] = useState<UIMessage[]>(() => readStoredMessages());
   const ref = useRef<HTMLTextAreaElement | null>(null);
 
-  const transport = useMemo(
-    () => new DefaultChatTransport({ api: "/api/public/chat" }),
-    [],
-  );
+  const transport = useMemo(() => new DefaultChatTransport({ api: "/api/public/chat" }), []);
   const { messages, sendMessage, status, error, stop, setMessages } = useChat({
     id: "public-chat",
     messages: stored,
@@ -108,7 +103,11 @@ export function PublicChatWidget() {
   return (
     <>
       {revealed && (
-        <div className={`chat-panel${open ? "" : " chat-panel-hidden"}`} role="dialog" aria-label="Chat with Connect Digital">
+        <div
+          className={`chat-panel${open ? "" : " chat-panel-hidden"}`}
+          role="dialog"
+          aria-label="Chat with Connect Digital"
+        >
           <div className="chat-panel-head">
             <div className="chat-panel-title">
               <span className="brand-mark">

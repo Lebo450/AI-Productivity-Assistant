@@ -58,15 +58,13 @@ export async function gateway(request: Request) {
           message: body.error?.message || body.message || `AI request failed (${response.status}).`,
         };
         if (response.status === 402 || response.status === 403) {
-          const r = await supabaseAdmin
-            .from("ai_access_state")
-            .upsert({
-              id: "gateway",
-              blocked: true,
-              reason: upstreamError.message,
-              status: response.status,
-              updated_at: new Date().toISOString(),
-            });
+          const r = await supabaseAdmin.from("ai_access_state").upsert({
+            id: "gateway",
+            blocked: true,
+            reason: upstreamError.message,
+            status: response.status,
+            updated_at: new Date().toISOString(),
+          });
           if (r.error)
             throw new Error("AI access was denied and the paused state could not be stored.");
         }
