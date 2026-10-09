@@ -14,7 +14,120 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      ai_access_state: {
+        Row: {
+          blocked: boolean
+          id: string
+          reason: string | null
+          status: number | null
+          updated_at: string
+        }
+        Insert: {
+          blocked?: boolean
+          id: string
+          reason?: string | null
+          status?: number | null
+          updated_at?: string
+        }
+        Update: {
+          blocked?: boolean
+          id?: string
+          reason?: string | null
+          status?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      contact_requests: {
+        Row: {
+          budget: string | null
+          business_name: string
+          created_at: string
+          description: string
+          email: string
+          full_name: string
+          id: string
+          phone: string | null
+          website_type: string
+        }
+        Insert: {
+          budget?: string | null
+          business_name: string
+          created_at?: string
+          description: string
+          email: string
+          full_name: string
+          id?: string
+          phone?: string | null
+          website_type: string
+        }
+        Update: {
+          budget?: string | null
+          business_name?: string
+          created_at?: string
+          description?: string
+          email?: string
+          full_name?: string
+          id?: string
+          phone?: string | null
+          website_type?: string
+        }
+        Relationships: []
+      }
+      conversations: {
+        Row: {
+          created_at: string
+          id: string
+          messages: Json
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          messages?: Json
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          messages?: Json
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      saved_plans: {
+        Row: {
+          created_at: string
+          id: string
+          plan: Json
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          plan: Json
+          title: string
+          updated_at?: string
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          plan?: Json
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
