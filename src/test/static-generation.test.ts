@@ -8,7 +8,7 @@ vi.mock("@lovable.dev/vite-tanstack-config", () => ({
 import config from "../../vite.config";
 
 describe("Static generation boundaries", () => {
-  const options = config as {
+  const options = config as unknown as {
     tanstackStart: {
       pages: { path: string }[];
       prerender: { enabled: boolean; autoStaticPathsDiscovery: boolean };
