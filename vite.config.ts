@@ -8,6 +8,18 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
   tanstackStart: {
+    // Only visitor-independent public pages are rendered at build time.
+    // Keep automatic discovery off so auth/workspace routes stay request-rendered.
+    pages: [
+      { path: "/" },
+      { path: "/services" },
+      { path: "/about" },
+      { path: "/contact" },
+      { path: "/privacy" },
+      { path: "/terms" },
+      { path: "/responsible-ai" },
+    ],
+    prerender: { enabled: true, autoStaticPathsDiscovery: false },
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },

@@ -14,6 +14,7 @@
 - [x] Code style checks clean in every file written by hand
 
 ## Open
+- [ ] Static generation for public pages — verify explicit page output and build completion
 - [ ] Owner creates their own login (sign-up from the site)
 - [ ] Live two-account privacy check — needs fresh temporary logins to be re-issued
 - [ ] Real contact details, company biography and legal details from the owner

@@ -15,3 +15,4 @@
 - Store conversations and saved plans with owner-scoped database policies; private records must never be accessible across accounts.
 - Use AI Elements for chat rendering and route-derived conversation IDs; switching conversations must remount the chat window.
 - Keep brand copy and configurable business details centralized; missing business information must remain clearly identified.
+- Prerender only the explicit visitor-independent public-page allowlist in vite.config.ts with automatic static path discovery disabled; auth, workspace and API routes must never capture private data at build time.
