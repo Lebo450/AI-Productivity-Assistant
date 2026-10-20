@@ -12,8 +12,10 @@
 - [x] Mobile layout: no sideways scrolling at phone width
 - [x] Database rules confirmed: each account's chats and plans are readable only by that account
 - [x] Code style checks clean in every file written by hand
+- [x] Static generation configured for seven public pages; private routes excluded; tests and public-page browser checks pass
 
 ## Open
+- [ ] Confirm seven generated HTML files and production build exit — requires the next publish build; preview checks produce no production output
 - [ ] Owner creates their own login (sign-up from the site)
 - [ ] Live two-account privacy check — needs fresh temporary logins to be re-issued
 - [ ] Real contact details, company biography and legal details from the owner
