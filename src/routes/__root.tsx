@@ -85,6 +85,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         name: "description",
         content: "Professional websites and practical AI tools for small businesses.",
       },
+      { name: "google-site-verification", content: "_l1YMMJixWYQRCQ--FV3UsaO3nnEz4ttK5zzyTZjw1A" },
       { name: "author", content: "Lovable" },
       { property: "og:title", content: "Connect Digital" },
       {
