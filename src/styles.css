@@ -2603,3 +2603,20 @@ h3 {
     height: min(78vh, 560px);
   }
 }
+
+/* Call / WhatsApp enquiry prompts */
+.call-band { background: var(--secondary); padding: 3rem 0; }
+.call-band-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
+.call-band h2 { font-size: 1.6rem; font-weight: 700; color: var(--foreground); }
+.call-band p { color: var(--muted-foreground); margin-top: .35rem; }
+.call-band-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.mobile-contact-bar { display: none; }
+@media (max-width: 820px) {
+  .mobile-contact-bar { display: grid; grid-template-columns: 1fr 1fr; position: fixed; inset: auto 0 0 0; z-index: 40; background: var(--card); border-top: 1px solid var(--border); box-shadow: 0 -6px 20px -12px color-mix(in oklab, var(--foreground) 35%, transparent); }
+  .mobile-contact-bar a { display: flex; align-items: center; justify-content: center; gap: .5rem; padding: .9rem; font-weight: 600; color: var(--primary); }
+  .mobile-contact-bar a:first-child { background: var(--primary); color: var(--primary-foreground); }
+  body { padding-bottom: 3.4rem; }
+  .chat-bubble { bottom: 4.5rem !important; }
+}
+.hero-buttons { flex-wrap: wrap; justify-content: center; }
+@media (max-width: 520px) { .hero-buttons > a { width: 100%; } }

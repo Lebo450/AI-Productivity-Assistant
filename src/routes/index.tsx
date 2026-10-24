@@ -1,3 +1,5 @@
+import { Phone, MessageCircle } from "lucide-react";
+import { siteConfig } from "@/lib/site-config";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
@@ -40,12 +42,19 @@ function Home() {
           </p>
           <div className="hero-buttons">
             <Button size="lg" asChild>
-              <Link to="/contact">
-                Get Your Website <ArrowRight />
-              </Link>
+              <a href={siteConfig.phoneHref}>
+                <Phone /> Call {siteConfig.phone}
+              </a>
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <Link to="/services">Explore Our Services</Link>
+              <a href={siteConfig.whatsappHref} target="_blank" rel="noopener noreferrer">
+                <MessageCircle /> WhatsApp for a quote
+              </a>
+            </Button>
+            <Button size="lg" variant="ghost" asChild>
+              <Link to="/services">
+                Explore Our Services <ArrowRight />
+              </Link>
             </Button>
           </div>
           <div className="hero-assurances">

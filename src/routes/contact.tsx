@@ -42,7 +42,20 @@ function Contact() {
             <Phone />
             <div>
               <strong>Give us a call</strong>
-              <p>{siteConfig.phone || "Phone number — to be added"}</p>
+              <p>
+                <a href={siteConfig.phoneHref}>{siteConfig.phone}</a>
+              </p>
+            </div>
+          </div>
+          <div className="contact-item">
+            <MessageSquare />
+            <div>
+              <strong>WhatsApp us</strong>
+              <p>
+                <a href={siteConfig.whatsappHref} target="_blank" rel="noopener noreferrer">
+                  Send a WhatsApp message
+                </a>
+              </p>
             </div>
           </div>
           <div className="soft-callout">
