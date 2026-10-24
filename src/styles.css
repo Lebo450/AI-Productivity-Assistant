@@ -2618,3 +2618,5 @@ h3 {
   body { padding-bottom: 3.4rem; }
   .chat-bubble { bottom: 4.5rem !important; }
 }
+.hero-buttons { flex-wrap: wrap; justify-content: center; }
+@media (max-width: 520px) { .hero-buttons > a { width: 100%; } }
