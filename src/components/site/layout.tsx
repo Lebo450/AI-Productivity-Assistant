@@ -1,6 +1,6 @@
 import { ClientOnly, Link, useLocation } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
-import { ArrowUpRight, Menu, X, Mail, ArrowRight } from "lucide-react";
+import { ArrowUpRight, Menu, X, Mail, ArrowRight, Phone, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Brand } from "./brand";
 import { PUBLIC_CHAT_OPEN_EVENT, PublicChatWidget } from "./chat-widget";
@@ -33,10 +33,15 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 Client dashboard <ArrowUpRight />
               </Link>
             </Button>
+            <Button variant="outline" asChild>
+              <a href={siteConfig.whatsappHref} target="_blank" rel="noopener noreferrer">
+                <MessageCircle /> WhatsApp
+              </a>
+            </Button>
             <Button asChild>
-              <Link to="/contact">
-                Let's talk <ArrowRight />
-              </Link>
+              <a href={siteConfig.phoneHref}>
+                <Phone /> {siteConfig.phone}
+              </a>
             </Button>
           </div>
           <Button
@@ -56,11 +61,35 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 {label}
               </Link>
             ))}
+            <a href={siteConfig.phoneHref}>Call {siteConfig.phone}</a>
+            <a href={siteConfig.whatsappHref} target="_blank" rel="noopener noreferrer">
+              WhatsApp us
+            </a>
             <Link to="/dashboard">Client dashboard</Link>
           </nav>
         )}
       </header>
       <main>{children}</main>
+      <section className="call-band" aria-label="Call or WhatsApp us">
+        <div className="container call-band-inner">
+          <div>
+            <h2>Ready for a website that brings in customers?</h2>
+            <p>Call or WhatsApp us for a free, no-pressure chat about your business.</p>
+          </div>
+          <div className="call-band-actions">
+            <Button size="lg" asChild>
+              <a href={siteConfig.phoneHref}>
+                <Phone /> Call {siteConfig.phone}
+              </a>
+            </Button>
+            <Button size="lg" variant="outline" asChild>
+              <a href={siteConfig.whatsappHref} target="_blank" rel="noopener noreferrer">
+                <MessageCircle /> WhatsApp us
+              </a>
+            </Button>
+          </div>
+        </div>
+      </section>
       <footer className="site-footer">
         <div className="container footer-grid">
           <div>
@@ -102,7 +131,14 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             ) : (
               <p>Email address — to be added</p>
             )}
-            <p>{siteConfig.phone || "Phone number — to be added"}</p>
+            <a href={siteConfig.phoneHref}>
+              <Phone />
+              {siteConfig.phone}
+            </a>
+            <a href={siteConfig.whatsappHref} target="_blank" rel="noopener noreferrer">
+              <MessageCircle />
+              WhatsApp us
+            </a>
             <Link to="/contact">
               Request a quote <ArrowUpRight />
             </Link>
@@ -116,6 +152,14 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           </div>
         </div>
       </footer>
+      <div className="mobile-contact-bar">
+        <a href={siteConfig.phoneHref}>
+          <Phone size={18} /> Call now
+        </a>
+        <a href={siteConfig.whatsappHref} target="_blank" rel="noopener noreferrer">
+          <MessageCircle size={18} /> WhatsApp
+        </a>
+      </div>
       <ClientOnly>
         <PublicChatWidget />
       </ClientOnly>

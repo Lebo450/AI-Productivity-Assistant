@@ -1,7 +1,11 @@
 export const siteConfig = {
   name: "Connect Digital",
   email: "",
-  phone: "",
+  phone: "084 898 7801",
+  phoneHref: "tel:+27848987801",
+  whatsappHref:
+    "https://wa.me/27848987801?text=" +
+    encodeURIComponent("Hi Connect Digital, I'd like a quote for a website."),
   socialUrl: "",
   biography:
     "Company story placeholder — add your background, founding story, and team information here.",
