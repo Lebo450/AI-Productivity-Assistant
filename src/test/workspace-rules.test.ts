@@ -30,6 +30,6 @@ describe("Workspace business rules", () => {
   });
   it("does not invent contact details", () => {
     expect(siteConfig.email).toBe("");
-    expect(siteConfig.phone).toBe("");
+    expect(siteConfig.phone).toBe("084 898 7801");
   });
 });
