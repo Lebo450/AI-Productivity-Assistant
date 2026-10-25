@@ -76,6 +76,7 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  staticData: { sitemap: false },
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -86,15 +87,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content: "Professional websites and practical AI tools for small businesses.",
       },
       { name: "google-site-verification", content: "_l1YMMJixWYQRCQ--FV3UsaO3nnEz4ttK5zzyTZjw1A" },
-      { name: "author", content: "Lovable" },
       { property: "og:title", content: "Connect Digital" },
       {
         property: "og:description",
         content: "Professional websites and practical AI tools for small businesses.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Connect Digital" },
+      { name: "theme-color", content: "#334155" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {

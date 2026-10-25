@@ -2,10 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageIntro } from "@/components/site/layout";
 import { pageHead, responsibleNotice } from "@/lib/site-config";
 export const Route = createFileRoute("/responsible-ai")({
+  staticData: { sitemap: true },
   head: () =>
     pageHead(
-      "Responsible AI",
-      "How to use Connect Digital AI tools safely, thoughtfully and responsibly.",
+      "Responsible AI Use",
+      "How to use Connect Digital AI tools safely: review outputs, protect sensitive information and keep human judgement in control of decisions.",
+      "/responsible-ai",
     ),
   component: () => (
     <SiteLayout>

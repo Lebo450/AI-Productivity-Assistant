@@ -14,14 +14,18 @@ import {
 import { Button } from "@/components/ui/button";
 import { SiteLayout, QuoteCTA } from "@/components/site/layout";
 import { ServiceGrid } from "@/components/site/service-grid";
-import { pageHead } from "@/lib/site-config";
+import { pageHead, businessJsonLd } from "@/lib/site-config";
 import studio from "@/assets/business-studio.jpg";
 export const Route = createFileRoute("/")({
-  head: () =>
-    pageHead(
-      "Websites that move your business forward",
-      "Modern, affordable, mobile-friendly websites for small businesses, startups and entrepreneurs. Build your online presence with Connect Digital.",
+  staticData: { sitemap: true },
+  head: () => ({
+    ...pageHead(
+      "Website Design for Small Businesses",
+      "Affordable, mobile-friendly websites for small businesses, startups and entrepreneurs. Call or WhatsApp Connect Digital on 084 898 7801 for a free quote.",
+      "/",
     ),
+    scripts: [{ type: "application/ld+json", children: JSON.stringify(businessJsonLd) }],
+  }),
   component: Home,
 });
 function Home() {

@@ -3,10 +3,12 @@ import { SiteLayout, PageIntro, QuoteCTA } from "@/components/site/layout";
 import { ServiceGrid } from "@/components/site/service-grid";
 import { pageHead } from "@/lib/site-config";
 export const Route = createFileRoute("/services")({
+  staticData: { sitemap: true },
   head: () =>
     pageHead(
-      "Our services",
-      "Explore small business websites, landing pages, website redesigns and basic SEO from Connect Digital.",
+      "Website Design Services",
+      "Small business websites, one-page and multi-page sites, website redesigns, landing pages and basic SEO. Request a free website quote from Connect Digital.",
+      "/services",
     ),
   component: () => (
     <SiteLayout>

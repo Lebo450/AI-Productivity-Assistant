@@ -3,10 +3,12 @@ import { SiteLayout, PageIntro, QuoteCTA } from "@/components/site/layout";
 import { pageHead, siteConfig } from "@/lib/site-config";
 import { HeartHandshake, Target, MessagesSquare } from "lucide-react";
 export const Route = createFileRoute("/about")({
+  staticData: { sitemap: true },
   head: () =>
     pageHead(
-      "About us",
-      "Connect Digital helps small businesses improve their online presence through practical, professional website solutions.",
+      "About Our Web Design Studio",
+      "Connect Digital helps small businesses and entrepreneurs build a professional online presence with practical, affordable, mobile-friendly websites.",
+      "/about",
     ),
   component: () => (
     <SiteLayout>

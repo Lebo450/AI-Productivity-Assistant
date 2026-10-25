@@ -7,6 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
 import { pageHead } from "@/lib/site-config";
 export const Route = createFileRoute("/auth")({
+  staticData: { sitemap: false },
   head: () =>
     pageHead("Your account", "Sign in to your private Connect Digital productivity workspace."),
   component: Auth,

@@ -36,6 +36,7 @@ const threadOptions = (id: string) =>
     queryFn: () => getConversation({ data: { id } }),
   });
 export const Route = createFileRoute("/_authenticated/dashboard/chat/$threadId")({
+  staticData: { sitemap: false },
   head: () =>
     pageHead("Conversation", "A private conversation with the Connect Digital AI assistant."),
   loader: ({ context, params }) =>

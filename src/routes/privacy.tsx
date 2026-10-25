@@ -2,10 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageIntro } from "@/components/site/layout";
 import { pageHead } from "@/lib/site-config";
 export const Route = createFileRoute("/privacy")({
+  staticData: { sitemap: true },
   head: () =>
     pageHead(
-      "Privacy policy",
-      "How Connect Digital handles enquiries and private workspace information.",
+      "Privacy Policy",
+      "How Connect Digital collects, uses and protects the information you share through website enquiries, accounts and AI workspace tools.",
+      "/privacy",
     ),
   component: () => (
     <SiteLayout>

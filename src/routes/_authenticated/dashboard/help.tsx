@@ -4,6 +4,7 @@ import { ToolHeading } from "@/components/workspace/tool-ui";
 import { Button } from "@/components/ui/button";
 import { pageHead } from "@/lib/site-config";
 export const Route = createFileRoute("/_authenticated/dashboard/help")({
+  staticData: { sitemap: false },
   head: () =>
     pageHead("Help & Support", "Find answers and support for your Connect Digital workspace."),
   component: () => (

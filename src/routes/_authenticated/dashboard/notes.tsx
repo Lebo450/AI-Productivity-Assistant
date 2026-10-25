@@ -13,6 +13,7 @@ import {
 } from "@/components/workspace/tool-ui";
 import { pageHead } from "@/lib/site-config";
 export const Route = createFileRoute("/_authenticated/dashboard/notes")({
+  staticData: { sitemap: false },
   head: () =>
     pageHead(
       "Meeting Notes Summarizer",

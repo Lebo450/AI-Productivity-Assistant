@@ -19,6 +19,7 @@ import { pageHead } from "@/lib/site-config";
 import type { Json } from "@/integrations/supabase/types";
 import { toast } from "sonner";
 export const Route = createFileRoute("/_authenticated/dashboard/planner")({
+  staticData: { sitemap: false },
   head: () =>
     pageHead(
       "AI Task Planner",
