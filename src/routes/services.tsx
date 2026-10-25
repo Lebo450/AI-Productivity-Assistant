@@ -3,6 +3,7 @@ import { SiteLayout, PageIntro, QuoteCTA } from "@/components/site/layout";
 import { ServiceGrid } from "@/components/site/service-grid";
 import { pageHead } from "@/lib/site-config";
 export const Route = createFileRoute("/services")({
+  staticData: { sitemap: true },
   head: () =>
     pageHead(
       "Our services",

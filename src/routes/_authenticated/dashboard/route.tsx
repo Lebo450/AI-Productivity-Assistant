@@ -8,6 +8,7 @@ export const workspaceOptions = queryOptions({
   queryFn: () => getWorkspace(),
 });
 export const Route = createFileRoute("/_authenticated/dashboard")({
+  staticData: { sitemap: false },
   head: () => pageHead("Workspace", "Your private Connect Digital AI productivity workspace."),
   loader: ({ context }) => context.queryClient.ensureQueryData(workspaceOptions),
   component: WorkspaceRoute,

@@ -6,6 +6,7 @@ import { SiteLayout, PageIntro } from "@/components/site/layout";
 import { pageHead, siteConfig } from "@/lib/site-config";
 import { supabase } from "@/integrations/supabase/client";
 export const Route = createFileRoute("/contact")({
+  staticData: { sitemap: true },
   head: () =>
     pageHead(
       "Contact us",

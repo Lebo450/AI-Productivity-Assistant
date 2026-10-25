@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageIntro } from "@/components/site/layout";
 import { pageHead } from "@/lib/site-config";
 export const Route = createFileRoute("/privacy")({
+  staticData: { sitemap: true },
   head: () =>
     pageHead(
       "Privacy policy",

@@ -9,6 +9,7 @@ import { pageHead } from "@/lib/site-config";
 import { toast } from "sonner";
 import { useState } from "react";
 export const Route = createFileRoute("/_authenticated/dashboard/chat")({
+  staticData: { sitemap: false },
   head: () => pageHead("AI Chat", "Your private AI conversations, saved securely to your account."),
   component: ChatLayout,
 });

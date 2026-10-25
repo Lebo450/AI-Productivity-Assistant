@@ -13,6 +13,7 @@ import {
 } from "@/components/workspace/tool-ui";
 import { pageHead } from "@/lib/site-config";
 export const Route = createFileRoute("/_authenticated/dashboard/email")({
+  staticData: { sitemap: false },
   head: () =>
     pageHead(
       "Smart Email Generator",

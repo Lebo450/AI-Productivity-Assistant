@@ -3,6 +3,7 @@ import { SiteLayout, PageIntro, QuoteCTA } from "@/components/site/layout";
 import { pageHead, siteConfig } from "@/lib/site-config";
 import { HeartHandshake, Target, MessagesSquare } from "lucide-react";
 export const Route = createFileRoute("/about")({
+  staticData: { sitemap: true },
   head: () =>
     pageHead(
       "About us",

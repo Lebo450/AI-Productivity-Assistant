@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageIntro } from "@/components/site/layout";
 import { pageHead, responsibleNotice } from "@/lib/site-config";
 export const Route = createFileRoute("/responsible-ai")({
+  staticData: { sitemap: true },
   head: () =>
     pageHead(
       "Responsible AI",

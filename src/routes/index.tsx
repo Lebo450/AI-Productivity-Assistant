@@ -17,6 +17,7 @@ import { ServiceGrid } from "@/components/site/service-grid";
 import { pageHead } from "@/lib/site-config";
 import studio from "@/assets/business-studio.jpg";
 export const Route = createFileRoute("/")({
+  staticData: { sitemap: true },
   head: () =>
     pageHead(
       "Websites that move your business forward",

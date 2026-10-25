@@ -8,6 +8,7 @@ import { workspaceOptions } from "./route";
 import { supabase } from "@/integrations/supabase/client";
 import { pageHead } from "@/lib/site-config";
 export const Route = createFileRoute("/_authenticated/dashboard/settings")({
+  staticData: { sitemap: false },
   head: () =>
     pageHead("Settings", "Manage your Connect Digital account and workspace preferences."),
   component: SettingsPage,

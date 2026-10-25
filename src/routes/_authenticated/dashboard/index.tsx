@@ -15,6 +15,7 @@ import { workspaceOptions } from "./route";
 import { pageHead } from "@/lib/site-config";
 import studio from "@/assets/business-studio.jpg";
 export const Route = createFileRoute("/_authenticated/dashboard/")({
+  staticData: { sitemap: false },
   head: () =>
     pageHead(
       "Dashboard home",
