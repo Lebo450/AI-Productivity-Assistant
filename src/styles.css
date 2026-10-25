@@ -789,6 +789,19 @@ h3 {
 .footer-grid > div > a svg {
   width: 12px;
 }
+.footer-grid p.footer-address {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  font-size: 10px;
+  color: var(--muted-foreground);
+  line-height: 1.9;
+}
+.footer-grid p.footer-address svg {
+  width: 12px;
+  color: var(--teal);
+}
 .footer-bottom {
   display: flex;
   justify-content: space-between;

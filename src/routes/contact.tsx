@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, Mail, Phone, MessageSquare, CheckCircle } from "lucide-react";
+import { ArrowRight, Mail, Phone, MessageSquare, CheckCircle, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiteLayout, PageIntro } from "@/components/site/layout";
 import { pageHead, siteConfig } from "@/lib/site-config";
@@ -58,6 +58,13 @@ function Contact() {
                   Send a WhatsApp message
                 </a>
               </p>
+            </div>
+          </div>
+          <div className="contact-item">
+            <MapPin />
+            <div>
+              <strong>Where we are</strong>
+              <p>{siteConfig.address}</p>
             </div>
           </div>
           <div className="soft-callout">

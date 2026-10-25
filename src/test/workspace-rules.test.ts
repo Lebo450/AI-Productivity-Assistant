@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { completionPercent } from "@/lib/ai/schemas";
 import { toolInstructions } from "@/lib/ai/prompts.server";
-import { services, siteConfig } from "@/lib/site-config";
+import { services, siteConfig, businessJsonLd } from "@/lib/site-config";
 describe("Workspace business rules", () => {
   it("calculates progress from actual completed tasks", () => {
     expect(
@@ -31,5 +31,12 @@ describe("Workspace business rules", () => {
   it("does not invent contact details", () => {
     expect(siteConfig.email).toBe("");
     expect(siteConfig.phone).toBe("084 898 7801");
+  });
+  it("states the business location as Cape Town, South Africa", () => {
+    expect(siteConfig.address).toBe("Cape Town, South Africa");
+    expect(businessJsonLd.address).toMatchObject({
+      addressLocality: "Cape Town",
+      addressCountry: "ZA",
+    });
   });
 });
