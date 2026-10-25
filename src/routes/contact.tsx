@@ -18,6 +18,7 @@ export const Route = createFileRoute("/contact")({
 function Contact() {
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
+  const [waUrl, setWaUrl] = useState("");
   return (
     <SiteLayout>
       <PageIntro
@@ -84,6 +85,24 @@ function Contact() {
             setStatus("");
             const f = new FormData(e.currentTarget);
             const val = (k: string) => String(f.get(k) || "").trim();
+            const text = [
+              "Hi Connect Digital, I'd like a quote for a website.",
+              "",
+              `Name: ${val("full_name")}`,
+              `Business: ${val("business_name")}`,
+              `Email: ${val("email")}`,
+              val("phone") && `Phone: ${val("phone")}`,
+              `Website type: ${val("website_type")}`,
+              val("budget") && `Budget: ${val("budget")}`,
+              `Project: ${val("description")}`,
+            ]
+              .filter((l) => l !== "")
+              .join("\n")
+              .replace(/\n\n/, "\n\n");
+            const url = `https://wa.me/27848987801?text=${encodeURIComponent(text)}`;
+            setWaUrl(url);
+            // Open straight away (while the click still counts) so browsers don't block it.
+            window.open(url, "_blank", "noopener,noreferrer");
             const { error } = await supabase.from("contact_requests").insert({
               full_name: val("full_name"),
               business_name: val("business_name"),
@@ -95,8 +114,8 @@ function Contact() {
             });
             setStatus(
               error
-                ? `Your request could not be submitted: ${error.message}`
-                : "Your request has been received securely. Thank you for contacting Connect Digital.",
+                ? `We couldn't save a copy of your request, but you can still send it on WhatsApp.`
+                : "Your request has been received. Press Send in WhatsApp so it reaches us.",
             );
             setBusy(false);
             if (!error) form.reset();
@@ -177,6 +196,15 @@ function Contact() {
             >
               {status.startsWith("Your request has") && <CheckCircle size={18} />} {status}
             </div>
+          )}
+          {waUrl && (
+            <p className="privacy-note">
+              WhatsApp didn't open?{" "}
+              <a href={waUrl} target="_blank" rel="noopener noreferrer">
+                Tap here to send your quote request on WhatsApp
+              </a>
+              .
+            </p>
           )}
           <Button size="lg" disabled={busy}>
             {busy ? "Submitting…" : "Request a Quote"}
