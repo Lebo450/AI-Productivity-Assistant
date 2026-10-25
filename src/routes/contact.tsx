@@ -9,9 +9,9 @@ export const Route = createFileRoute("/contact")({
   staticData: { sitemap: true },
   head: () =>
     pageHead(
-      'Contact Us for a Website Quote',
-      'Call or WhatsApp 084 898 7801, or send your project details to request a personalised website quote from Connect Digital. No pressure, no jargon.',
-      '/contact',
+      "Contact Us for a Website Quote",
+      "Call or WhatsApp 084 898 7801, or send your project details to request a personalised website quote from Connect Digital. No pressure, no jargon.",
+      "/contact",
     ),
   component: Contact,
 });

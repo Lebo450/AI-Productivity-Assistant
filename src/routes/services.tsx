@@ -6,9 +6,9 @@ export const Route = createFileRoute("/services")({
   staticData: { sitemap: true },
   head: () =>
     pageHead(
-      'Website Design Services',
-      'Small business websites, one-page and multi-page sites, website redesigns, landing pages and basic SEO. Request a free website quote from Connect Digital.',
-      '/services',
+      "Website Design Services",
+      "Small business websites, one-page and multi-page sites, website redesigns, landing pages and basic SEO. Request a free website quote from Connect Digital.",
+      "/services",
     ),
   component: () => (
     <SiteLayout>

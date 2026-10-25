@@ -5,9 +5,9 @@ export const Route = createFileRoute("/privacy")({
   staticData: { sitemap: true },
   head: () =>
     pageHead(
-      'Privacy Policy',
-      'How Connect Digital collects, uses and protects the information you share through website enquiries, accounts and AI workspace tools.',
-      '/privacy',
+      "Privacy Policy",
+      "How Connect Digital collects, uses and protects the information you share through website enquiries, accounts and AI workspace tools.",
+      "/privacy",
     ),
   component: () => (
     <SiteLayout>

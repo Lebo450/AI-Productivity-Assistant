@@ -5,9 +5,9 @@ export const Route = createFileRoute("/terms")({
   staticData: { sitemap: true },
   head: () =>
     pageHead(
-      'Terms of Service',
-      'The terms for using the Connect Digital website, website design quotes, client accounts and the AI productivity workspace.',
-      '/terms',
+      "Terms of Service",
+      "The terms for using the Connect Digital website, website design quotes, client accounts and the AI productivity workspace.",
+      "/terms",
     ),
   component: () => (
     <SiteLayout>
