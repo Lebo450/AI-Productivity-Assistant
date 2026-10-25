@@ -6,8 +6,9 @@ export const Route = createFileRoute("/about")({
   staticData: { sitemap: true },
   head: () =>
     pageHead(
-      "About us",
-      "Connect Digital helps small businesses improve their online presence through practical, professional website solutions.",
+      'About Our Web Design Studio',
+      'Connect Digital helps small businesses and entrepreneurs build a professional online presence with practical, affordable, mobile-friendly websites.',
+      '/about',
     ),
   component: () => (
     <SiteLayout>

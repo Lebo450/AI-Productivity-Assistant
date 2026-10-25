@@ -5,8 +5,9 @@ export const Route = createFileRoute("/responsible-ai")({
   staticData: { sitemap: true },
   head: () =>
     pageHead(
-      "Responsible AI",
-      "How to use Connect Digital AI tools safely, thoughtfully and responsibly.",
+      'Responsible AI Use',
+      'How to use Connect Digital AI tools safely: review outputs, protect sensitive information and keep human judgement in control of decisions.',
+      '/responsible-ai',
     ),
   component: () => (
     <SiteLayout>

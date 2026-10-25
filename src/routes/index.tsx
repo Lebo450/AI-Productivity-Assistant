@@ -20,8 +20,9 @@ export const Route = createFileRoute("/")({
   staticData: { sitemap: true },
   head: () =>
     pageHead(
-      "Websites that move your business forward",
-      "Modern, affordable, mobile-friendly websites for small businesses, startups and entrepreneurs. Build your online presence with Connect Digital.",
+      'Website Design for Small Businesses',
+      'Affordable, mobile-friendly websites for small businesses, startups and entrepreneurs. Call or WhatsApp Connect Digital on 084 898 7801 for a free quote.',
+      '/',
     ),
   component: Home,
 });

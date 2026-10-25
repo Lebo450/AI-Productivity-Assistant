@@ -40,7 +40,6 @@ export const businessJsonLd = {
   telephone: "+27848987801",
   description:
     "Website design for small businesses, startups and entrepreneurs: business websites, one-page sites, redesigns, landing pages and basic SEO.",
-  areaServed: "ZA",
   contactPoint: {
     "@type": "ContactPoint",
     telephone: "+27848987801",

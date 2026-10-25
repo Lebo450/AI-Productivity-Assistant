@@ -4,7 +4,11 @@ import { pageHead } from "@/lib/site-config";
 export const Route = createFileRoute("/terms")({
   staticData: { sitemap: true },
   head: () =>
-    pageHead("Terms of service", "Terms for using the Connect Digital website and AI workspace."),
+    pageHead(
+      'Terms of Service',
+      'The terms for using the Connect Digital website, website design quotes, client accounts and the AI productivity workspace.',
+      '/terms',
+    ),
   component: () => (
     <SiteLayout>
       <PageIntro
