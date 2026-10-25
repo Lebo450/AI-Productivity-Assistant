@@ -7,6 +7,7 @@ export const siteConfig = {
     "https://wa.me/27848987801?text=" +
     encodeURIComponent("Hi Connect Digital, I'd like a quote for a website."),
   socialUrl: "",
+  address: "Cape Town, South Africa",
   biography:
     "Company story placeholder — add your background, founding story, and team information here.",
 };
@@ -38,6 +39,11 @@ export const businessJsonLd = {
   name: "Connect Digital",
   url: SITE_URL,
   telephone: "+27848987801",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Cape Town",
+    addressCountry: "ZA",
+  },
   description:
     "Website design for small businesses, startups and entrepreneurs: business websites, one-page sites, redesigns, landing pages and basic SEO.",
   contactPoint: {

@@ -1,6 +1,6 @@
 import { ClientOnly, Link, useLocation } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
-import { ArrowUpRight, Menu, X, Mail, ArrowRight, Phone, MessageCircle } from "lucide-react";
+import { ArrowUpRight, Menu, X, Mail, ArrowRight, Phone, MessageCircle, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Brand } from "./brand";
 import { PUBLIC_CHAT_OPEN_EVENT, PublicChatWidget } from "./chat-widget";
@@ -139,6 +139,10 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               <MessageCircle />
               WhatsApp us
             </a>
+            <p className="footer-address">
+              <MapPin />
+              {siteConfig.address}
+            </p>
             <Link to="/contact">
               Request a quote <ArrowUpRight />
             </Link>
