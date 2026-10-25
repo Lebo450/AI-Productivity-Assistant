@@ -17,6 +17,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ResponsibleAiRouteImport } from './routes/responsible-ai'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AuthenticatedDashboardRouteRouteImport } from './routes/_authenticated/dashboard/route'
 import { Route as ApiAiRouteImport } from './routes/api/ai'
@@ -67,6 +68,11 @@ const ResponsibleAiRoute = ResponsibleAiRouteImport.update({
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TermsRoute = TermsRouteImport.update({
@@ -147,6 +153,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/responsible-ai': typeof ResponsibleAiRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/dashboard': typeof AuthenticatedDashboardRouteRouteWithChildren
   '/api/ai': typeof ApiAiRoute
@@ -168,6 +175,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/responsible-ai': typeof ResponsibleAiRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/api/ai': typeof ApiAiRoute
   '/dashboard/chat': typeof AuthenticatedDashboardChatRouteWithChildren
@@ -190,6 +198,7 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/responsible-ai': typeof ResponsibleAiRoute
   '/services': typeof ServicesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRouteRouteWithChildren
   '/api/ai': typeof ApiAiRoute
@@ -213,6 +222,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/responsible-ai'
     | '/services'
+    | '/sitemap.xml'
     | '/terms'
     | '/dashboard'
     | '/api/ai'
@@ -234,6 +244,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/responsible-ai'
     | '/services'
+    | '/sitemap.xml'
     | '/terms'
     | '/api/ai'
     | '/dashboard/chat'
@@ -255,6 +266,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/responsible-ai'
     | '/services'
+    | '/sitemap.xml'
     | '/terms'
     | '/_authenticated/dashboard'
     | '/api/ai'
@@ -278,6 +290,7 @@ export interface RootRouteChildren {
   PrivacyRoute: typeof PrivacyRoute
   ResponsibleAiRoute: typeof ResponsibleAiRoute
   ServicesRoute: typeof ServicesRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   ApiAiRoute: typeof ApiAiRoute
   ApiPublicChatRoute: typeof ApiPublicChatRoute
@@ -339,6 +352,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/terms': {
@@ -491,6 +511,7 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyRoute: PrivacyRoute,
   ResponsibleAiRoute: ResponsibleAiRoute,
   ServicesRoute: ServicesRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   ApiAiRoute: ApiAiRoute,
   ApiPublicChatRoute: ApiPublicChatRoute,

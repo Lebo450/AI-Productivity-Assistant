@@ -12,16 +12,42 @@ export const siteConfig = {
 };
 export const responsibleNotice =
   "Responsible AI Notice — Prepared by Lebohang April. AI-generated content may contain errors or omissions. Please review and verify all outputs before using or sharing them. Do not enter passwords, sensitive personal information, or confidential business information. Users remain responsible for the final content and decisions.";
-export const pageHead = (title: string, description: string) => ({
-  meta: [
-    { title: `${title} | Connect Digital` },
-    { name: "description", content: description },
-    { property: "og:title", content: `${title} | Connect Digital` },
-    { property: "og:description", content: description },
-    { property: "og:type", content: "website" },
-    { name: "twitter:card", content: "summary_large_image" },
-  ],
-});
+export const SITE_URL = "https://connectdigital.lovable.app";
+/** Per-page head tags. Pass `path` for public pages (adds canonical + og:url); omit for private pages (adds noindex). */
+export const pageHead = (title: string, description: string, path?: string) => {
+  const fullTitle = `${title} | Connect Digital`;
+  const url = path ? `${SITE_URL}${path === "/" ? "/" : path}` : undefined;
+  return {
+    meta: [
+      { title: fullTitle },
+      { name: "description", content: description },
+      { property: "og:title", content: fullTitle },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: fullTitle },
+      { name: "twitter:description", content: description },
+      ...(url ? [{ property: "og:url", content: url }] : [{ name: "robots", content: "noindex" }]),
+    ],
+    links: url ? [{ rel: "canonical", href: url }] : [],
+  };
+};
+export const businessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Connect Digital",
+  url: SITE_URL,
+  telephone: "+27848987801",
+  description:
+    "Website design for small businesses, startups and entrepreneurs: business websites, one-page sites, redesigns, landing pages and basic SEO.",
+  areaServed: "ZA",
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+27848987801",
+    contactType: "sales",
+    availableLanguage: "English",
+  },
+};
 export const services = [
   {
     title: "Small Business Website Design",
